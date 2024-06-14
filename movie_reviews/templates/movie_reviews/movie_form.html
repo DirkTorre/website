@@ -1,0 +1,37 @@
+{% comment %} <form action="." method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    <table>
+    <input type='submit' value='save' />
+
+    <h1>De scores moeten er nog bij, en ik vermoed dat dit via overerving kan</h1>
+</form> {% endcomment %}
+
+{% comment %} {% extends 'your_app_name/base.html' %} {% endcomment %}
+
+{% comment %} {% block content %}
+  <h2>Add a new movie</h2>
+  <form method="post">
+    {% csrf_token %}
+    <table>
+    {{ movie_form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
+<h1>check of dit werkt en er niet onnondige dubbele film id's worden toegevoegd</h1>
+<h1>naast de id box moet een knop komen die probeert de info van de laatste review op te halen</h1> {% endcomment %}
+
+
+<form method="POST" enctype="multipart/form-data">
+ 
+  <!-- Security token -->
+  {% csrf_token %}
+
+  <!-- Using the formset -->
+  <table>
+  {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit">
+</form>

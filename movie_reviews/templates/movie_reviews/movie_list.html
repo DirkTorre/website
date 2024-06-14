@@ -1,0 +1,16 @@
+<h1>List view</h1>
+<h2>All movies</h2> 
+ 
+
+<table>
+    <tr>
+    <th>ttnumber</th>
+    <th>watched</th>
+    <th>priority</th>
+    <th>netflix availability</th>
+    <th>prime availability</th>
+    </tr>
+    {% for object in object_list %}
+    <tr><td>{{ object.ttnumber }}</td><td>{{ object.watched }}</td><td>{{ object.priority }}</td><td>{{ object.netflix }}</td><td>{{ object.prime }}</td></tr>
+    {% endfor %}
+</table>

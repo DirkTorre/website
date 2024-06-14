@@ -1,0 +1,3 @@
+- alles zou nu moeten werken, test het.
+- maak een aparte schermen voor de scores, zoals nu bij films.
+- als dat allemaal werkt kan het geheel fucntioneler worden gemaakt.
