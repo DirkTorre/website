@@ -1,3 +1,6 @@
-- alles zou nu moeten werken, test het.
-- maak een aparte schermen voor de scores, zoals nu bij films.
-- als dat allemaal werkt kan het geheel fucntioneler worden gemaakt.
+- model is gemaakt
+- simpele form is gemaakt
+
+TODO
+- krijg de form aan de praat in een view: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-editing/
+

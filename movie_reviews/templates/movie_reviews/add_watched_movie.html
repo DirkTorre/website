@@ -1,0 +1,10 @@
+<h1>Add a watched movie</h1>
+
+<form method='post'>
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <br>
+    <input type="submit">
+</form>
