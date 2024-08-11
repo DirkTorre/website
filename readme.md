@@ -3,6 +3,8 @@
 Here we add everything related to movie reviews.
 Let's start with an form to insert data.
 
+handy: https://djangocentral.com/django-orm-cheatsheet/
+
 link
 watch_date
 watched

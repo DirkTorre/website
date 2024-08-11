@@ -12,54 +12,42 @@ class AddWatchedMovieView(FormView):
     success_url = "/movies/"
 
     def form_valid(self, form):
-        # is dit de goede plek om dit neer te zetten
-
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-
+        # Get cleaned data
         id = form.cleaned_data["imdb_id"]
         date = form.cleaned_data["date"]
         enjoyment = form.cleaned_data["enjoyment"]
         netflix = form.cleaned_data["netflix"]
         prime = form.cleaned_data["prime"]
 
-        # edit or add watched status
+        # Create or update WatchedStatus
         watched_status_obj, created = WatchedStatus.objects.update_or_create(
-           tconst = id,
-           status = True
+            tconst = id,
+            status = True
         )
-        watched_status_obj.save()
 
-        # add watched date
-        # might add a duplicate
-        if date != None:
-            obj = WatchedDates.objects.create(
+        # Add watched date
+        if date:
+            WatchedDates.objects.create(
                 tconst = watched_status_obj,
                 watch_date = date,
                 enjoyment = int(enjoyment)
             )
-            obj.save()
 
-        # add or update netflix status
-        if netflix != None:
-            # edit or add watched status
-            obj, created = Availability.objects.update_or_create(
+        # Update Netflix status
+        if netflix is not None:
+            Availability.objects.update_or_create(
                 tconst = watched_status_obj,
-                netflix = netflix
+                defaults = {"netflix": netflix}
             )
-            obj.save()
-        
-        # add or update prime status
-        if prime != None:
-            # edit or add watched status
-            obj, created = Availability.objects.update_or_create(
+
+        # Update Prime status
+        if prime is not None:
+            Availability.objects.update_or_create(
                 tconst = watched_status_obj,
-                prime = netflix
+                defaults = {"prime": prime}
             )
-            obj.save()
 
-
-        return super(AddWatchedMovieView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class AddUnwatchedMovieView(FormView):
@@ -68,9 +56,65 @@ class AddUnwatchedMovieView(FormView):
     success_url = "/movies/"
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        # Extract cleaned data from the form
+        imdb_id = form.cleaned_data["imdb_id"]
+        priority = form.cleaned_data["priority"]
+        netflix = form.cleaned_data["netflix"]
+        prime = form.cleaned_data["prime"]
+
+        # Check if the movie already exists in WatchedStatus
+        movie, created = WatchedStatus.objects.get_or_create(
+            tconst=imdb_id,
+            defaults={'status': False, 'priority': priority}
+        )
+
+        if created:
+            # If the movie was newly created, add its availability
+            Availability.objects.create(
+                tconst=movie,
+                netflix=netflix,
+                prime=prime
+            )
+        else:
+            # Update availability if the movie already exists
+            availability, _ = Availability.objects.get_or_create(tconst=movie)
+            if netflix is not None:
+                availability.netflix = netflix
+            if prime is not None:
+                availability.prime = prime
+            availability.save()
+
+            # Update priority if the new value is True
+            if priority:
+                movie.priority = True
+                movie.save()
+
         return super().form_valid(form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # class AddUnwatchedMovieView(TemplateView):

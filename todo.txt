@@ -1,6 +1,9 @@
 - model is gemaakt
 - simpele form is gemaakt
+- form werkt
 
 TODO
-- krijg de form aan de praat in een view: https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-editing/
+- django admin goed maken
+- andere forms maken
+- homepage maken
 
