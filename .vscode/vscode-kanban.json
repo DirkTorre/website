@@ -1,0 +1,61 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:17:37.960Z",
+      "description": {
+        "content": "er voor zorgen dat AddWatchedMovieView niet crashed wanneer e iets nieuws toevoegd",
+        "mime": "text/markdown"
+      },
+      "id": "4",
+      "references": [],
+      "title": "prevent crash when AddWatchedMovieView gets a movie that is already in database"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:18:27.112Z",
+      "id": "5",
+      "references": [],
+      "title": "sucessfull submitting a form must give a fresh form + a success notification"
+    }
+  ],
+  "in-progress": [],
+  "testing": [],
+  "done": [
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:16:13.259Z",
+      "description": {
+        "content": "- hoe zet ik AddWatchedMovieView in base.html??",
+        "mime": "text/markdown"
+      },
+      "id": "3",
+      "references": [],
+      "title": "make homepages"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:14:26.818Z",
+      "id": "1",
+      "references": [],
+      "title": "make model"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:14:41.570Z",
+      "id": "2",
+      "references": [],
+      "title": "make simple forms"
+    }
+  ]
+}

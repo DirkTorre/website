@@ -6,7 +6,18 @@ from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm
 from .models import WatchedStatus, WatchedDates, Availability
 
 
+class HomePageView(TemplateView):
+    template_name = 'movie_reviews/index.html'
+
+    def get_context_data(self, *args, **kwargs):
+        # context = super(self).get_context_data(*args, **kwargs)
+        context = {}
+        context['message'] = 'KILL THE CARDASHIANS'
+        return context
+
+
 class AddWatchedMovieView(FormView):
+    # TODO: crashes when a movie is added that already excists
     template_name = "movie_reviews/add_watched_movie.html"
     form_class = AddWatchedMovieForm
     success_url = "/movies/"

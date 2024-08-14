@@ -2,10 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'movie_reviews'
+
 urlpatterns = [
     
-    path('movie/add/rated/', views.AddWatchedMovieView.as_view(), name="movie-add-rated"),
-    path('movie/add/unwatched/', views.AddUnwatchedMovieView.as_view(), name="movie-add-unwatched"),
+    path('', views.HomePageView.as_view(), name="home"),
+    path('adddata/watched/', views.AddWatchedMovieView.as_view(), name="add-watched"),
+    path('adddata/unwatched/', views.AddUnwatchedMovieView.as_view(), name="add-unwatched"),
     # path('movie/list/', views.MovieListView.as_view(), name="movie-add"),
     # path('movie/add/', views.MovieCreateView.as_view(), name="movie-add"),
     # path('movie/<pk>/', views.MovieDetailView.as_view(), name="movie-detail"),
