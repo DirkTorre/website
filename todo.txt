@@ -1,9 +1,0 @@
-- model is gemaakt
-- simpele form is gemaakt
-- form werkt
-
-TODO
-- django admin goed maken
-- andere forms maken
-- homepage maken
-

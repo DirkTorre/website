@@ -32,8 +32,12 @@ class AddWatchedMovieView(FormView):
 
         # Create or update WatchedStatus
         watched_status_obj, created = WatchedStatus.objects.update_or_create(
-            tconst = id,
-            status = True
+            # attributes to search for
+            tconst = id,        
+            defaults= {
+                # attributes to update
+                'status': True,
+                'priority': False}
         )
 
         # Add watched date

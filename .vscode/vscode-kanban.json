@@ -4,14 +4,14 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-08-11T22:17:37.960Z",
+      "creation_time": "2024-08-14T22:54:12.542Z",
       "description": {
-        "content": "er voor zorgen dat AddWatchedMovieView niet crashed wanneer e iets nieuws toevoegd",
+        "content": "when errors are gone and website functions well, create tests (use copilot)",
         "mime": "text/markdown"
       },
-      "id": "4",
+      "id": "6",
       "references": [],
-      "title": "prevent crash when AddWatchedMovieView gets a movie that is already in database"
+      "title": "make tests for everything"
     },
     {
       "assignedTo": {
@@ -56,6 +56,23 @@
       "id": "2",
       "references": [],
       "title": "make simple forms"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-11T22:17:37.960Z",
+      "description": {
+        "content": "er voor zorgen dat AddWatchedMovieView niet crashed wanneer e iets nieuws toevoegd",
+        "mime": "text/markdown"
+      },
+      "id": "4",
+      "references": [],
+      "title": "prevent crash when AddWatchedMovieView gets a movie that is already in database",
+      "details": {
+        "content": "Zie ook https://stackoverflow.com/questions/50915911/django-update-or-create-gets-duplicate-key-value-violates-unique-constraint",
+        "mime": "text/markdown"
+      }
     }
   ]
 }

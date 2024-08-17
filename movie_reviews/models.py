@@ -6,7 +6,7 @@ from django.urls import reverse
 class WatchedStatus(models.Model):
     tconst = models.CharField(max_length=12, primary_key=True, null=False)
     status = models.BooleanField(default=False)
-    priority = models.BooleanField(default=False)
+    priority = models.BooleanField(default=False, null=True)
 
     class Meta:
         verbose_name_plural = 'Watched Status'

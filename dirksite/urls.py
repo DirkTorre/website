@@ -19,7 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("homepage.urls", namespace='homepage')),
-    path("movie/", include("movie_reviews.urls", namespace='movie_reviews'))
+    path("movies/", include("movie_reviews.urls", namespace='movie_reviews'))
 ]
 
 admin.site.site_header = "Dirk's website Admin Page"
