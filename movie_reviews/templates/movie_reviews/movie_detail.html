@@ -5,18 +5,25 @@
 <h1>Detail view</h1>
 <h2>Movie Info</h2>
 <div>
-    Hier moet een form komen om status en priority aan te passen
-{{ watchedstatus.tconst }}
-{{ watchedstatus.status }}
-{{ watchedstatus.priority }}
+    Hier moet een form komen om status en priority aan te passen.<br>
+    <li><a href="https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview">Link naar form mixins</a></li>
+    
+    <ul>
+        <li>{{ watchedstatus.tconst }}</li>
+        <li>{{ watchedstatus.status }}</li>
+        <li>{{ watchedstatus.priority }}</li>
+        <li><a href="https://www.imdb.com/title/{{ watchedstatus.tconst }}/">Link to more imdb data</a></li>
+    </ul>
 </div>
 
 <h2>Watch Stats</h2>
 <div>
     Hier moet info komen over de reviews met een link naar een form
-{{ watchedstatus.tconst }}
-{{ watchedstatus.status }}
-{{ watchedstatus.priority }}
+    <ul>
+        <li>{{ watchedstatus.tconst }}</li>
+        <li>{{ watchedstatus.status }}</li>
+        <li>{{ watchedstatus.priority }}</li>
+    </ul>
 </div>
 
 

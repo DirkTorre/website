@@ -7,8 +7,8 @@ app_name = 'movie_reviews'
 urlpatterns = [
     
     path('', views.HomePageView.as_view(), name="home"),
-    path('adddata/watched/', views.AddWatchedMovieView.as_view(), name="add-watched"),
-    path('adddata/unwatched/', views.AddUnwatchedMovieView.as_view(), name="add-unwatched"),
+    # path('adddata/watched/', views.AddWatchedMovieView.as_view(), name="add-watched"),
+    # path('adddata/unwatched/', views.AddUnwatchedMovieView.as_view(), name="add-unwatched"),
     path('add/', views.AddMovieView.as_view(), name="add-movie"),
     path('details/<int:pk>/', views.MovieDetailView.as_view(), name='movie-detail'),
 

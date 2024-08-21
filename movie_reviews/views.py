@@ -47,6 +47,17 @@ class AddMovieView(FormView):
 
 
 class MovieDetailView(DetailView):
+    """
+    https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview
+
+    TODO: This view needs forms to change:
+        - priority and watched in WatchedStatus
+        - netflix and prime in Availability
+    
+        - WatchedDates form for a new element
+
+        - It also needs a list with links to WatchedDates instances so they can be updated
+    """
     template_name = "movie_reviews/movie_detail.html"
     model = WatchedStatus
 
@@ -59,124 +70,124 @@ class MovieDetailView(DetailView):
 
 
 
-class AddWatchedMovieView(FormView):
-    template_name = "movie_reviews/add_watched_movie.html"
-    form_class = AddWatchedMovieForm
-    success_url = "/movies/adddata/watched/"
+# class AddWatchedMovieView(FormView):
+#     template_name = "movie_reviews/add_watched_movie.html"
+#     form_class = AddWatchedMovieForm
+#     success_url = "/movies/adddata/watched/"
 
-    def form_valid(self, form):
-        # Get cleaned data
-        id = form.cleaned_data["imdb_id"]
-        date = form.cleaned_data["date"]
-        enjoyment = form.cleaned_data["enjoyment"]
-        netflix = form.cleaned_data["netflix"]
-        prime = form.cleaned_data["prime"]
+#     def form_valid(self, form):
+#         # Get cleaned data
+#         id = form.cleaned_data["imdb_id"]
+#         date = form.cleaned_data["date"]
+#         enjoyment = form.cleaned_data["enjoyment"]
+#         netflix = form.cleaned_data["netflix"]
+#         prime = form.cleaned_data["prime"]
 
         
-        # Create or update WatchedStatus
-        watched_status_obj, created = WatchedStatus.objects.update_or_create(
-            # attributes to search for
-            tconst = id,        
-            defaults= {
-                # attributes to update
-                'status': True,
-                'priority': False}
-        )
+#         # Create or update WatchedStatus
+#         watched_status_obj, created = WatchedStatus.objects.update_or_create(
+#             # attributes to search for
+#             tconst = id,        
+#             defaults= {
+#                 # attributes to update
+#                 'status': True,
+#                 'priority': False}
+#         )
 
-        # Add watched date
-        if date:
-            WatchedDates.objects.create(
-                tconst = watched_status_obj,
-                watch_date = date,
-                enjoyment = int(enjoyment)
-            )
+#         # Add watched date
+#         if date:
+#             WatchedDates.objects.create(
+#                 tconst = watched_status_obj,
+#                 watch_date = date,
+#                 enjoyment = int(enjoyment)
+#             )
 
-        # Update Netflix status
-        if netflix is not None:
-            Availability.objects.update_or_create(
-                tconst = watched_status_obj,
-                defaults = {"netflix": netflix}
-            )
+#         # Update Netflix status
+#         if netflix is not None:
+#             Availability.objects.update_or_create(
+#                 tconst = watched_status_obj,
+#                 defaults = {"netflix": netflix}
+#             )
 
-        # Update Prime status
-        if prime is not None:
-            Availability.objects.update_or_create(
-                tconst = watched_status_obj,
-                defaults = {"prime": prime}
-            )
+#         # Update Prime status
+#         if prime is not None:
+#             Availability.objects.update_or_create(
+#                 tconst = watched_status_obj,
+#                 defaults = {"prime": prime}
+#             )
 
-        if created:
-            # if a new movie is added
-            messages.success(self.request,
-                             f'Successfully added {watched_status_obj.tconst}')
-        else:
-            # if a movie is updated
-            print(check_watched_status_change(watched_status_obj))
-            messages.success(self.request,
-                             f'Successfully updated {watched_status_obj.tconst}')
+#         if created:
+#             # if a new movie is added
+#             messages.success(self.request,
+#                              f'Successfully added {watched_status_obj.tconst}')
+#         else:
+#             # if a movie is updated
+#             print(check_watched_status_change(watched_status_obj))
+#             messages.success(self.request,
+#                              f'Successfully updated {watched_status_obj.tconst}')
             
             
 
-        return super().form_valid(form)
+#         return super().form_valid(form)
 
 
-class AddUnwatchedMovieView(FormView):
-    template_name = "movie_reviews/add_unwatched_movie.html"
-    form_class = AddUnwatchedMovieForm
-    success_url = "/movies/adddata/unwatched/"
+# class AddUnwatchedMovieView(FormView):
+#     template_name = "movie_reviews/add_unwatched_movie.html"
+#     form_class = AddUnwatchedMovieForm
+#     success_url = "/movies/adddata/unwatched/"
 
-    def form_valid(self, form):
-        # Extract cleaned data from the form
-        imdb_id = form.cleaned_data["imdb_id"]
-        priority = form.cleaned_data["priority"]
-        netflix = form.cleaned_data["netflix"]
-        prime = form.cleaned_data["prime"]
+#     def form_valid(self, form):
+#         # Extract cleaned data from the form
+#         imdb_id = form.cleaned_data["imdb_id"]
+#         priority = form.cleaned_data["priority"]
+#         netflix = form.cleaned_data["netflix"]
+#         prime = form.cleaned_data["prime"]
 
-        # Check if the movie already exists in WatchedStatus
-        watched_status_obj, created = WatchedStatus.objects.get_or_create(
-            tconst = imdb_id,
-            defaults = {'status': False, 'priority': priority}
-        )
+#         # Check if the movie already exists in WatchedStatus
+#         watched_status_obj, created = WatchedStatus.objects.get_or_create(
+#             tconst = imdb_id,
+#             defaults = {'status': False, 'priority': priority}
+#         )
 
-        if created:
-            # If the movie was newly created, add its availability
-            Availability.objects.create(
-                tconst = watched_status_obj,
-                netflix = netflix,
-                prime = prime
-            )
-        else:
-            # Update availability if the movie already exists
-            availability, created = Availability.objects.get_or_create(tconst=watched_status_obj)
-            if netflix is not None:
-                availability.netflix = netflix
-            if prime is not None:
-                availability.prime = prime
-            availability.save()
+#         if created:
+#             # If the movie was newly created, add its availability
+#             Availability.objects.create(
+#                 tconst = watched_status_obj,
+#                 netflix = netflix,
+#                 prime = prime
+#             )
+#         else:
+#             # Update availability if the movie already exists
+#             availability, created = Availability.objects.get_or_create(tconst=watched_status_obj)
+#             if netflix is not None:
+#                 availability.netflix = netflix
+#             if prime is not None:
+#                 availability.prime = prime
+#             availability.save()
 
-            # Update priority if the new value is True
-            if priority:
-                watched_status_obj.priority = True
-                watched_status_obj.save()
+#             # Update priority if the new value is True
+#             if priority:
+#                 watched_status_obj.priority = True
+#                 watched_status_obj.save()
 
-        message = ''
-        # TODO: update this code block so it works for availability, priority and created
-        # TODO: transfer this functionality to the database model
-        if created:
-            # if a new movie is added
-            message = f'Successfully added {watched_status_obj.tconst}'
-        else:
-            message += 'Successfully updated: '
-            if watched_status_obj.changed_status():
-                message += 'status; '
-            if watched_status_obj.changed_priority():
-                message += 'priority; '
+#         message = ''
+#         # TODO: update this code block so it works for availability, priority and created
+#         # TODO: transfer this functionality to the database model
+#         if created:
+#             # if a new movie is added
+#             message = f'Successfully added {watched_status_obj.tconst}'
+#         else:
+#             message += 'Successfully updated: '
+#             if watched_status_obj.changed_status():
+#                 message += 'status; '
+#             if watched_status_obj.changed_priority():
+#                 message += 'priority; '
         
-        messages.success(self.request, message)
+#         messages.success(self.request, message)
 
-        messages.success(self.request, f'Successfully added {watched_status_obj.tconst}')
+#         messages.success(self.request, f'Successfully added {watched_status_obj.tconst}')
 
-        return super().form_valid(form)
+#         return super().form_valid(form)
 
 
 
