@@ -1,9 +1,10 @@
+from django.urls import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, CreateView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
 
-from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm
+from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm, AddMovieForm
 
 from .models import WatchedStatus, WatchedDates, Availability
 
@@ -18,6 +19,44 @@ class HomePageView(TemplateView):
         context = {}
         context['message'] = 'KILL THE CARDASHIANS'
         return context
+
+
+
+
+class AddMovieView(FormView):
+    template_name = "movie_reviews/add_movie.html"
+    form_class = AddMovieForm
+    # success_url = "/movies/adddata/watched/"
+    # must point to details view
+
+    def form_valid(self, form):
+        # get cleaned data
+        tconst = form.cleaned_data["imdb_id"]
+        watched_status, created = WatchedStatus.objects.get_or_create(
+            tconst = tconst,
+            defaults = {'status': None, 'priority': None}
+            )
+        watched_status.save()
+        self.id = watched_status.id
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('movie_reviews:movie-detail', kwargs={'pk': self.id})
+
+
+
+
+class MovieDetailView(DetailView):
+    template_name = "movie_reviews/movie_detail.html"
+    model = WatchedStatus
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        watchedstatus_id = self.kwargs.get('pk')  # Assuming 'pk' is the URL parameter
+        context['watchedstatus'] = WatchedStatus.objects.get(id=watchedstatus_id)
+        return context
+
+
 
 
 class AddWatchedMovieView(FormView):
@@ -140,15 +179,6 @@ class AddUnwatchedMovieView(FormView):
         return super().form_valid(form)
 
 
-class WatchedStatusDetailView(DetailView):
-    template_name = "movie_reviews/movie_detail.html"
-    model = WatchedStatus
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        watchedstatus_id = self.kwargs.get('pk')  # Assuming 'pk' is the URL parameter
-        context['watchedstatus'] = WatchedStatus.objects.get(pk=watchedstatus_id)
-        return context
 
 
 

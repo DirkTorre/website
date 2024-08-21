@@ -78,6 +78,17 @@ class AddUnwatchedMovieForm(forms.Form, MovieMixin):
     prime = forms.NullBooleanField(label="Available on Prime?", required=False, widget=forms.RadioSelect(choices=RADIOSELECT_CHOICES))
 
 
+class AddMovieForm(forms.Form):
+     imdb_id = forms.URLField(label="IMDb URL", required=True)
+
+     def clean_imdb_id(self):
+        """
+        Get the id from the url.
+        """
+        url = self.cleaned_data["imdb_id"]
+        regex = re.compile('^tt[0-9]+')
+        url = list(filter(lambda id: regex.match(id), url.split('/')))[0]
+        return url
 
 
 

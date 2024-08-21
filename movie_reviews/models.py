@@ -1,38 +1,39 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class WatchedStatus(models.Model):
     # database fields
-    tconst = models.CharField(max_length=12, primary_key=True, null=False)
-    status = models.BooleanField(default=False)
+    tconst = models.CharField(max_length=12, unique=True, null=False)
+    status = models.BooleanField(default=False, null=True)
     priority = models.BooleanField(default=False, null=True)
 
-    # class variable (i think)
-    _old_status = None
-    _old_priority = None
+    # # class variable (i think)
+    # _old_status = None
+    # _old_priority = None
 
     class Meta:
         verbose_name_plural = 'Watched Status'
     
-    @classmethod
-    def from_db(cls, db, field_names, values):
-        """
-        Override class method.
-        """
-        instance = super().from_db(db, field_names, values)
-        # Cache old values
-        instance._old_status = instance.status
-        instance._old_priority = instance.priority
+    # @classmethod
+    # def from_db(cls, db, field_names, values):
+    #     """
+    #     Override class method.
+    #     """
+    #     instance = super().from_db(db, field_names, values)
+    #     # Cache old values
+    #     instance._old_status = instance.status
+    #     instance._old_priority = instance.priority
         
-        return instance
+    #     return instance
     
-    def changed_status(self):
-        return self._old_status != self.status
+    # def changed_status(self):
+    #     return self._old_status != self.status
 
-    def changed_priority(self):
-        return self._old_status != self.status
+    # def changed_priority(self):
+    #     return self._old_status != self.status
 
 
 class WatchedDates(models.Model):

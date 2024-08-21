@@ -3,14 +3,22 @@
 {% block content %}
 
 <h1>Detail view</h1>
-
-http://127.0.0.1:8000/movies/tt7550000/
-
-dit moet eigenlijk een form worden waar je alle data kan aanpassen
-
+<h2>Movie Info</h2>
+<div>
+    Hier moet een form komen om status en priority aan te passen
 {{ watchedstatus.tconst }}
 {{ watchedstatus.status }}
 {{ watchedstatus.priority }}
+</div>
+
+<h2>Watch Stats</h2>
+<div>
+    Hier moet info komen over de reviews met een link naar een form
+{{ watchedstatus.tconst }}
+{{ watchedstatus.status }}
+{{ watchedstatus.priority }}
+</div>
+
 
 {% comment %} This gives information about movie: {{ object.tconst }}</h1>
 
