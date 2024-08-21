@@ -26,3 +26,7 @@ scores:
 ## templates
 - [info on templates](https://dev.to/scofieldidehen/mastering-django-templates-a-guide-to-advanced-features-and-best-practices-25pe)
 - [more info on templetas](https://www.pythontutorial.net/django-tutorial/django-templates/)
+
+
+misschien kan je beter een scherm hebben waar je een de url in gooit.
+ttconst wordt opgeslagen, daarna ga je naar een update view.

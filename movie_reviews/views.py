@@ -1,9 +1,13 @@
-from django.views.generic.edit import FormView, CreateView
 from django.views.generic import TemplateView
+from django.views.generic.edit import FormView, CreateView
+from django.views.generic.detail import DetailView
+from django.contrib import messages
 
 from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm
 
 from .models import WatchedStatus, WatchedDates, Availability
+
+from .signals import check_watched_status_change
 
 
 class HomePageView(TemplateView):
@@ -17,10 +21,9 @@ class HomePageView(TemplateView):
 
 
 class AddWatchedMovieView(FormView):
-    # TODO: crashes when a movie is added that already excists
     template_name = "movie_reviews/add_watched_movie.html"
     form_class = AddWatchedMovieForm
-    success_url = "/movies/"
+    success_url = "/movies/adddata/watched/"
 
     def form_valid(self, form):
         # Get cleaned data
@@ -30,6 +33,7 @@ class AddWatchedMovieView(FormView):
         netflix = form.cleaned_data["netflix"]
         prime = form.cleaned_data["prime"]
 
+        
         # Create or update WatchedStatus
         watched_status_obj, created = WatchedStatus.objects.update_or_create(
             # attributes to search for
@@ -62,13 +66,25 @@ class AddWatchedMovieView(FormView):
                 defaults = {"prime": prime}
             )
 
+        if created:
+            # if a new movie is added
+            messages.success(self.request,
+                             f'Successfully added {watched_status_obj.tconst}')
+        else:
+            # if a movie is updated
+            print(check_watched_status_change(watched_status_obj))
+            messages.success(self.request,
+                             f'Successfully updated {watched_status_obj.tconst}')
+            
+            
+
         return super().form_valid(form)
 
 
 class AddUnwatchedMovieView(FormView):
     template_name = "movie_reviews/add_unwatched_movie.html"
     form_class = AddUnwatchedMovieForm
-    success_url = "/movies/"
+    success_url = "/movies/adddata/unwatched/"
 
     def form_valid(self, form):
         # Extract cleaned data from the form
@@ -78,21 +94,21 @@ class AddUnwatchedMovieView(FormView):
         prime = form.cleaned_data["prime"]
 
         # Check if the movie already exists in WatchedStatus
-        movie, created = WatchedStatus.objects.get_or_create(
-            tconst=imdb_id,
-            defaults={'status': False, 'priority': priority}
+        watched_status_obj, created = WatchedStatus.objects.get_or_create(
+            tconst = imdb_id,
+            defaults = {'status': False, 'priority': priority}
         )
 
         if created:
             # If the movie was newly created, add its availability
             Availability.objects.create(
-                tconst=movie,
-                netflix=netflix,
-                prime=prime
+                tconst = watched_status_obj,
+                netflix = netflix,
+                prime = prime
             )
         else:
             # Update availability if the movie already exists
-            availability, _ = Availability.objects.get_or_create(tconst=movie)
+            availability, created = Availability.objects.get_or_create(tconst=watched_status_obj)
             if netflix is not None:
                 availability.netflix = netflix
             if prime is not None:
@@ -101,12 +117,38 @@ class AddUnwatchedMovieView(FormView):
 
             # Update priority if the new value is True
             if priority:
-                movie.priority = True
-                movie.save()
+                watched_status_obj.priority = True
+                watched_status_obj.save()
+
+        message = ''
+        # TODO: update this code block so it works for availability, priority and created
+        # TODO: transfer this functionality to the database model
+        if created:
+            # if a new movie is added
+            message = f'Successfully added {watched_status_obj.tconst}'
+        else:
+            message += 'Successfully updated: '
+            if watched_status_obj.changed_status():
+                message += 'status; '
+            if watched_status_obj.changed_priority():
+                message += 'priority; '
+        
+        messages.success(self.request, message)
+
+        messages.success(self.request, f'Successfully added {watched_status_obj.tconst}')
 
         return super().form_valid(form)
 
 
+class WatchedStatusDetailView(DetailView):
+    template_name = "movie_reviews/movie_detail.html"
+    model = WatchedStatus
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        watchedstatus_id = self.kwargs.get('pk')  # Assuming 'pk' is the URL parameter
+        context['watchedstatus'] = WatchedStatus.objects.get(pk=watchedstatus_id)
+        return context
 
 
 
@@ -132,6 +174,9 @@ class AddUnwatchedMovieView(FormView):
 
 
 
+
+
+# TODO: remove when site is done
 # class AddUnwatchedMovieView(TemplateView):
 #     template_name = "movie_reviews/add_unwatched_movie.html"
 #     success_url = "/movies/"

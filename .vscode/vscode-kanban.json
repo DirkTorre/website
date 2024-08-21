@@ -12,7 +12,9 @@
       "id": "6",
       "references": [],
       "title": "make tests for everything"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "DirkTorre"
@@ -20,10 +22,13 @@
       "creation_time": "2024-08-11T22:18:27.112Z",
       "id": "5",
       "references": [],
-      "title": "sucessfull submitting a form must give a fresh form + a success notification"
+      "title": "sucessfull submitting a form must give a fresh form + a success notification",
+      "details": {
+        "content": "messages:\n- sucessfully added\n\t+ unwatched (done)\n    + watched (done)\n- updated\n- wrong url (not imdb and no tt)\n\ncreate a seperate template for the message",
+        "mime": "text/markdown"
+      }
     }
   ],
-  "in-progress": [],
   "testing": [],
   "done": [
     {

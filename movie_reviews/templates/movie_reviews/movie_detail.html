@@ -1,14 +1,21 @@
+{% extends 'base.html' %}
 
+{% block content %}
 
 <h1>Detail view</h1>
 
-This gives information about movie: {{ object.ttnumber }}</h1>
- 
- 
+http://127.0.0.1:8000/movies/tt7550000/
+
+dit moet eigenlijk een form worden waar je alle data kan aanpassen
+
+{{ watchedstatus.tconst }}
+{{ watchedstatus.status }}
+{{ watchedstatus.priority }}
+
+{% comment %} This gives information about movie: {{ object.tconst }}</h1>
 
 <table>
-    <tr><td>watched:</td><td>{{ object.watched }}</td></tr>
+    <tr><td>status:</td><td>{{ object.status }}</td></tr>
     <tr><td>priority:</td><td>{{ object.priority }}</td></tr>
-    <tr><td>netflix:</td><td>{{ object.netflix }}</td></tr>
-    <tr><td>prime:</td><td>{{ object.prime }}</td></tr>
-</table>
+</table> {% endcomment %}
+{% endblock%}

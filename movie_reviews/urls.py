@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.HomePageView.as_view(), name="home"),
     path('adddata/watched/', views.AddWatchedMovieView.as_view(), name="add-watched"),
     path('adddata/unwatched/', views.AddUnwatchedMovieView.as_view(), name="add-unwatched"),
+    path('<pk>/', views.WatchedStatusDetailView.as_view())
     # path('movie/list/', views.MovieListView.as_view(), name="movie-add"),
     # path('movie/add/', views.MovieCreateView.as_view(), name="movie-add"),
     # path('movie/<pk>/', views.MovieDetailView.as_view(), name="movie-detail"),
