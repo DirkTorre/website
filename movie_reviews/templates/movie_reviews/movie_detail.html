@@ -2,11 +2,65 @@
 
 {% block content %}
 
-<h1>Detail view</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Detail</title>
+</head>
+<body>
+    <h1>Movie Detail</h1>
+    <p>Tconst: {{ object.tconst }}</p>
+    <h2>Update Watched Status</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+        {{ watched_status_form.as_table }}
+        </table>
+        <button type="submit">Save</button>
+    </form>
+    <h2>Reviews</h2>
+</body>
+</html>
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Detail</title>
+</head>
+<body>
+    <h1>Movie Detail</h1>
+    <p>Tconst: {{ object.tconst }}</p>
+    <p>Status: {{ object.status }}</p>
+    <p>Priority: {{ object.priority }}</p>
+
+    <h2>Update Watched Status</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ watched_status_form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html> {% endcomment %}
+
+{% comment %} newer------------------------- {% endcomment %}
+
+{% comment %} <h1>Detail view</h1>
 <h2>Movie Info</h2>
 <div>
-    Hier moet een form komen om status en priority aan te passen.<br>
-    <li><a href="https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview">Link naar form mixins</a></li>
+    <div>
+        Hier moet een form komen om status en priority aan te passen.<br>
+        <a href="https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview">Link naar form mixins</a>
+    </div>
+    <div>
+        <form method='post' id='watched_status_form'>
+            {% csrf_token %}
+            <table>
+                {{ watched_status_form.as_table }}
+            </table>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
     
     <ul>
         <li>{{ watchedstatus.tconst }}</li>
@@ -24,8 +78,9 @@
         <li>{{ watchedstatus.status }}</li>
         <li>{{ watchedstatus.priority }}</li>
     </ul>
-</div>
+</div> {% endcomment %}
 
+{% comment %} old ------------------  {% endcomment %}
 
 {% comment %} This gives information about movie: {{ object.tconst }}</h1>
 

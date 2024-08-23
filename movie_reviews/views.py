@@ -1,10 +1,10 @@
 from django.urls import reverse
 from django.views.generic import TemplateView
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import FormView, CreateView, UpdateView, FormMixin, ModelFormMixin
 from django.views.generic.detail import DetailView
 from django.contrib import messages
 
-from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm, AddMovieForm
+from .forms import AddWatchedMovieForm, AddUnwatchedMovieForm, AddMovieForm, WatchedStatusForm
 
 from .models import WatchedStatus, WatchedDates, Availability
 
@@ -46,26 +46,129 @@ class AddMovieView(FormView):
 
 
 
-class MovieDetailView(DetailView):
-    """
-    https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview
 
-    TODO: This view needs forms to change:
-        - priority and watched in WatchedStatus
-        - netflix and prime in Availability
-    
-        - WatchedDates form for a new element
-
-        - It also needs a list with links to WatchedDates instances so they can be updated
-    """
-    template_name = "movie_reviews/movie_detail.html"
+class MovieDetailView(DetailView, ModelFormMixin):
     model = WatchedStatus
+    template_name = "movie_reviews/movie_detail.html"
+    form_class = WatchedStatusForm
+
+    def get_success_url(self):
+        return reverse('movie_reviews:movie-detail', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        watchedstatus_id = self.kwargs.get('pk')  # Assuming 'pk' is the URL parameter
-        context['watchedstatus'] = WatchedStatus.objects.get(id=watchedstatus_id)
+        context['watched_status_form'] = self.get_form()
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return super().form_valid(form)
+
+
+# class MovieDetailView(DetailView, FormMixin):
+#     # >>>> naar kijen: ModelFormMixin
+
+
+#     model = WatchedStatus
+#     template_name = "movie_reviews/movie_detail.html"
+#     form_class = WatchedStatusForm
+
+#     def get_success_url(self):
+#         return reverse('movie_reviews:movie-detail', kwargs={'pk': self.object.pk})
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['watched_status_form'] = self.get_form(instance=self.object)
+#         return context
+
+#     def post(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         form = self.get_form(instance=self.object)
+#         if form.is_valid():
+#             return self.form_valid(form)
+#         else:
+#             return self.form_invalid(form)
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.save()
+#         return super().form_valid(form)
+
+
+# class MovieDetailView(DetailView, FormMixin):
+#     """
+#     https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/#using-formmixin-with-detailview
+
+#     TODO: This view needs forms to change:
+#         - priority and watched in WatchedStatus
+#         - netflix and prime in Availability
+    
+#         - WatchedDates form for a new element
+
+#         - It also needs a list with links to WatchedDates instances so they can be updated
+#     """
+#     template_name = "movie_reviews/movie_detail.html"
+#     model = WatchedStatus
+#     form_class = WatchedStatusForm
+
+#     def get_success_url(self):
+#         return reverse('movie_reviews:movie-detail', kwargs={'pk': self.object.pk})
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['watched_status_form'] = self.get_form()
+#         return context
+
+#     def post(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         form = self.get_form()
+#         if form.is_valid():
+#             return self.form_valid(form)
+#         else:
+#             return self.form_invalid(form)
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.save()
+#         return super().form_valid(form)
+
+#----------------------
+    # def get_context_data(self, **kwargs):
+    #     context = super(MovieDetailView, self).get_context_data(**kwargs)
+    #     context['watched_status_form'] = WatchedStatusForm(instance=self.object)
+
+        # watched_status_id = self.kwargs.get('pk')  # Assuming 'pk' is the URL parameter
+        # watched_status = WatchedStatus.objects.get(id=watched_status_id)
+        # watched_status_form = WatchedStatusForm(instance = watched_status)
+
+        # context['watchedstatus'] = watched_status
+        # context['watched_status_form'] = watched_status_form
+        # return context
+
+    # def post(self, request, *args, **kwargs):
+    #     self.object = self.get_object()
+    #     print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    #     print(self.object)
+    #     form = self.get_form()
+    #     print(self.get_form())
+    #     if form.is_valid():
+    #         return self.form_valid(form)
+    #     else:
+    #         return self.form_invalid(form)
+
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     return super().form_valid(form)
 
 
 

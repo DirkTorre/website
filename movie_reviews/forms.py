@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, modelformset_factory
+from django.forms import ChoiceField, ModelForm, Select, modelformset_factory, NullBooleanField, NullBooleanSelect, BooleanField
 from .models import WatchedStatus
 import re
 
@@ -13,6 +13,17 @@ import re
 #     class Meta:
 #         model = Scores
 #         fields = ['watch_date', 'enjoyment', 'story', 'subject', 'acting', 'script', 'visual', 'action', 'comedy']
+
+
+class WatchedStatusForm(forms.ModelForm):
+    class Meta:
+        model = WatchedStatus
+        labels = {
+            'status': 'Watched',
+        }
+        exclude = ['tconst']
+
+
 
 
 RADIOSELECT_CHOICES = [
