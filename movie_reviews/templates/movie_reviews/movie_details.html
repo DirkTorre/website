@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ movie_status_object.tconst }}</h1>
+
+<div>
+    <h2>Status</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table>
+            {{ movie_status_form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div>
+    <h2>Info</h2>
+    {{ movie_status_object.tconst }}
+</div>
+
+<div>
+    <h2>Reviews</h2>
+</div>
+
+{% endblock%}

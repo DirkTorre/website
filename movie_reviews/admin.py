@@ -1,35 +1,19 @@
 from django.contrib import admin
-from .models import WatchedDates, WatchedStatus, Availability
+from .models import WatchedDates, MovieStatus
 
 """
 tutorial: https://books.agiliq.com/projects/django-admin-cookbook/en/latest/change_text.html
 """
 
-# # Register the admin class with the associated model
-# admin.site.register(WatchedDates, WatchedDatesAdmin)
-# admin.site.register(WatchedStatus, WatchedStatusAdmin)
-# admin.site.register(Availability, AvailabilityAdmin)
-
-
-
-@admin.register(WatchedStatus)
-class WatchedStatusAdmin(admin.ModelAdmin):
-    list_display = ('tconst', 'status', 'priority')
-    list_filter = ("status", "priority")
+@admin.register(MovieStatus)
+class MovieStatusAdmin(admin.ModelAdmin):
+    list_display = ('tconst', 'status', 'priority','netflix','prime')
+    list_filter = ('status', 'priority','netflix','prime')
 
 
 # register admin classes
 @admin.register(WatchedDates)
 class WatchedDatesAdmin(admin.ModelAdmin):
-    list_display = ('tconst', 'watch_date', 'enjoyment')
-    list_filter = ('watch_date', 'enjoyment')
+    list_display = ('tconst', 'watch_date', 'enjoyment', 'quality')
+    list_filter = ('watch_date', 'enjoyment', 'quality')
     raw_id_fields = ['tconst']
-
-
-
-@admin.register(Availability)
-class AvailabilityAdmin(admin.ModelAdmin):
-    list_display = ('tconst', 'netflix', 'prime')
-    list_filter = ('netflix', 'prime')
-    raw_id_fields = ['tconst']
-

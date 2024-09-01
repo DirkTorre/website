@@ -1,43 +1,35 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.urls import reverse
-from django.utils.text import slugify
 
+CHOICES = {
+    'status': (
+        (None, "unknown"),
+        (True, "watched"),
+        (False, "not watched")
+    ),
+    'priority': (
+        (True, "yes"),
+        (False, "no")
+    ),
+    'available': (
+        (None, "unknown"),
+        (True, "available"),
+        (False, "not available")
+    )
+}
 
-class WatchedStatus(models.Model):
-    # database fields
+class MovieStatus(models.Model):
     tconst = models.CharField(max_length=12, unique=True, null=False)
-    status = models.BooleanField(default=False, null=True)
-    priority = models.BooleanField(default=False, null=True)
-
-    # # class variable (i think)
-    # _old_status = None
-    # _old_priority = None
+    status = models.BooleanField(default=False, null=True, choices=CHOICES['status'])
+    priority = models.BooleanField(default=False, null=False, choices=CHOICES['priority'])
+    netflix = models.BooleanField(default=None, null=True, choices=CHOICES['available'])
+    prime = models.BooleanField(default=None, null=True, choices=CHOICES['available'])
 
     class Meta:
-        verbose_name_plural = 'Watched Status'
-    
-    # @classmethod
-    # def from_db(cls, db, field_names, values):
-    #     """
-    #     Override class method.
-    #     """
-    #     instance = super().from_db(db, field_names, values)
-    #     # Cache old values
-    #     instance._old_status = instance.status
-    #     instance._old_priority = instance.priority
-        
-    #     return instance
-    
-    # def changed_status(self):
-    #     return self._old_status != self.status
-
-    # def changed_priority(self):
-    #     return self._old_status != self.status
+        verbose_name_plural = 'Movie Status'
 
 
 class WatchedDates(models.Model):
-    tconst = models.ForeignKey(to=WatchedStatus, null=False, on_delete=models.DO_NOTHING)
+    tconst = models.ForeignKey(to=MovieStatus, null=False, on_delete=models.DO_NOTHING)
     watch_date = models.DateField(null=True)
     enjoyment = models.SmallIntegerField()
     quality = models.SmallIntegerField(null=True)
@@ -45,11 +37,3 @@ class WatchedDates(models.Model):
 
     class Meta:
         verbose_name_plural = 'Watched Dates'
-
-class Availability(models.Model):
-    tconst = models.ForeignKey(to=WatchedStatus, null=False, on_delete=models.DO_NOTHING)
-    netflix = models.BooleanField(null=True)
-    prime = models.BooleanField(null=True)
-
-    class Meta:
-        verbose_name_plural = 'Availability'

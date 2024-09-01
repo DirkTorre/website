@@ -20,8 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("homepage.urls", namespace='homepage')),
     path("movies/", include("movie_reviews.urls", namespace='movie_reviews'))
-]
 
+]
 admin.site.site_header = "Dirk's website Admin Page"
 admin.site.site_title = admin.site.site_header
 admin.site.index_title = "Dirk's website database tables"

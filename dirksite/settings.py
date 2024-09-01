@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from os import path
+from os import path # TODO: can be replaced by Path?
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(jzpj^n0p&zjwyw&&a)dh8!eh&c%65%3lyy!$%**x!+a5wd-dk'
+SECRET_KEY = 'django-insecure-u3$su-!b7x1q47su30t8fic+@vf+v-&a6_gx0%995lj9*j+7s3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'movie_reviews',
     'homepage',
+    'movie_reviews',
 ]
 
 MIDDLEWARE = [
