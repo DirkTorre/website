@@ -2,7 +2,7 @@
 
 This is a personal project of mine to enhance my django Software Engineering skills.
 The goal is to make a website with all kind of projects on it.
-The main project for now is creating an personal version of the IMDb movie database website. Here I store information about movies I want to watch and have watched. I'm using Django class based views for this, which I'm new to, so there is a lot to learn.
+The main project for now is creating an personal version of the IMDb movie database website. Here I store information about movies I want to watch and have watched. I'm using Django class based views for this, which I'm new to, so there is a lot to learn. 
 
 ## sources
 
