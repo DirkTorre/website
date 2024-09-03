@@ -36,12 +36,14 @@
             <th>watch date</th>
             <th>enjoyment</th>
             <th>quality</th>
+            <th>link</th>
         </tr>
         {% for review in movie_reviews %}
         <tr>
             <td>{{ review.watch_date }}</td>
             <td>{{ review.enjoyment }}</td>
             <td>{{ review.quality }}</td>
+            <td>{{ review.get_url }}</td>
         </tr>
         {% endfor %}
     </table>

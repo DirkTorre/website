@@ -16,13 +16,31 @@ The main project for now is creating an personal version of the IMDb movie datab
 - [Django ORM Cheatsheet: Mastering Database Operations in Django](https://djangocentral.com/django-orm-cheatsheet/)
 
 ### Class based views
+
 - [Create View](https://www.pythontutorial.net/django-tutorial/django-createview/)
 
-# Notes
+## Notes
 
 Pushed sqlite database django superuser to github.
 That's fine for development, but bad for deployment.
 
-# TODO's
-- delete database from main branch and replace with dummie database, provide instructions on how to setup
-- include environment file in commit
+## TODO's
+
+- details:
+    - delete database from main branch and replace with dummie database, provide instructions on how to setup
+    - include environment file in commit
+
+### plan
+
+- reviews:
+    - create a update view
+    - create a delete view
+    - database model should return a link to the update view
+
+- movie list:
+    - list view with pagination.
+    - links to detail views.
+    - filtering
+
+
+

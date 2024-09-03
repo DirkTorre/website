@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, FormView, DetailView, CreateView
 from django.views.generic.edit import ModelFormMixin
 
 from .models import MovieStatus, WatchedDates
-from .forms import AddMovieForm, MovieStatusForm
+from .forms import AddMovieForm, MovieStatusForm, WatchedDatesForm
 
 class HomePageView(TemplateView):
     template_name = 'movie_reviews/index.html'
@@ -83,7 +83,8 @@ class AddReviewView(CreateView):
     A view to create a review for a movie registered in MovieStatus.
     """
     model = WatchedDates
-    fields = ['watch_date', 'enjoyment', 'quality']
+    form_class = WatchedDatesForm
+    # fields = ['watch_date', 'enjoyment', 'quality']
     template_name = "movie_reviews/review_add.html"
     context_object_name = 'review'
 
