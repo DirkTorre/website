@@ -30,6 +30,21 @@
 
 <div>
     <h2>Reviews</h2>
+    <a href="{% url 'movie_reviews:review-add' pk=movie_status_object.pk %}" class="btn btn-primary">Add Review</a>
+    <table>
+        <tr>
+            <th>watch date</th>
+            <th>enjoyment</th>
+            <th>quality</th>
+        </tr>
+        {% for review in movie_reviews %}
+        <tr>
+            <td>{{ review.watch_date }}</td>
+            <td>{{ review.enjoyment }}</td>
+            <td>{{ review.quality }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 {% endblock%}

@@ -9,11 +9,14 @@ The main project for now is creating an personal version of the IMDb movie datab
 ### templates
 
 - [info on templates](https://dev.to/scofieldidehen/mastering-django-templates-a-guide-to-advanced-features-and-best-practices-25pe)
-- [more info on templetas](https://www.pythontutorial.net/django-tutorial/django-templates/)
+- [more info on templates](https://www.pythontutorial.net/django-tutorial/django-templates/)
 
 ### database
 
 - [Django ORM Cheatsheet: Mastering Database Operations in Django](https://djangocentral.com/django-orm-cheatsheet/)
+
+### Class based views
+- [Create View](https://www.pythontutorial.net/django-tutorial/django-createview/)
 
 # Notes
 

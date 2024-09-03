@@ -41,6 +41,9 @@ class AddMovieView(FormView):
 
 
 class MovieDetailView(DetailView, ModelFormMixin):
+    """
+    Details for a movie, defined by the tables MovieStatus and WatchedDates.
+    """
     model = MovieStatus
     form_class = MovieStatusForm
     template_name = "movie_reviews/movie_details.html"
@@ -58,6 +61,11 @@ class MovieDetailView(DetailView, ModelFormMixin):
         context = super().get_context_data(**kwargs)
         context['movie_status_object'] = self.get_object()
         context['movie_status_form'] = self.get_form()
+
+        # movie_status = MovieStatus.objects.get(id=2)
+        
+        watched_dates = WatchedDates.objects.filter(tconst=context['movie_status_object']).order_by('watch_date')
+        context['movie_reviews'] = watched_dates
         return context
 
     def post(self, request, *args, **kwargs):
@@ -72,7 +80,7 @@ class MovieDetailView(DetailView, ModelFormMixin):
 
 class AddReviewView(CreateView):
     """
-    https://www.pythontutorial.net/django-tutorial/django-createview/
+    A view to create a review for a movie registered in MovieStatus.
     """
     model = WatchedDates
     fields = ['watch_date', 'enjoyment', 'quality']
