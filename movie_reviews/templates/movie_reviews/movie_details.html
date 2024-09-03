@@ -4,6 +4,14 @@
 
 <h1>{{ movie_status_object.tconst }}</h1>
 
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+{% endif %}
+
 <div>
     <h2>Status</h2>
     <form method="post" action="">

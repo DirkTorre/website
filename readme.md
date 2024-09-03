@@ -14,3 +14,12 @@ The main project for now is creating an personal version of the IMDb movie datab
 ### database
 
 - [Django ORM Cheatsheet: Mastering Database Operations in Django](https://djangocentral.com/django-orm-cheatsheet/)
+
+# Notes
+
+Pushed sqlite database django superuser to github.
+That's fine for development, but bad for deployment.
+
+# TODO's
+- delete database from main branch and replace with dummie database, provide instructions on how to setup
+- include environment file in commit

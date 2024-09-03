@@ -1,9 +1,10 @@
-from django.urls import reverse
+from django.contrib import messages
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, DetailView
+from django.views.generic import TemplateView, FormView, DetailView, CreateView
 from django.views.generic.edit import ModelFormMixin
 
-from .models import MovieStatus
+from .models import MovieStatus, WatchedDates
 from .forms import AddMovieForm, MovieStatusForm
 
 class HomePageView(TemplateView):
@@ -68,3 +69,22 @@ class MovieDetailView(DetailView, ModelFormMixin):
         else:
             return self.form_invalid(form)
 
+
+class AddReviewView(CreateView):
+    """
+    https://www.pythontutorial.net/django-tutorial/django-createview/
+    """
+    model = WatchedDates
+    fields = ['watch_date', 'enjoyment', 'quality']
+    template_name = "movie_reviews/review_add.html"
+    context_object_name = 'review'
+
+    def get_success_url(self):
+        return reverse('movie_reviews:movie-detail', kwargs={'pk': self.kwargs['pk']})
+        
+
+    def form_valid(self, form):
+        movie_status = MovieStatus.objects.get(pk=self.kwargs['pk'])
+        form.instance.tconst = movie_status
+        messages.success(self.request, "Review added successfully.")
+        return super().form_valid(form)
