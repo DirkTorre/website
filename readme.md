@@ -33,9 +33,9 @@ That's fine for development, but bad for deployment.
 ### plan
 
 - reviews:
-    - create a update view
-    - create a delete view
-    - database model should return a link to the update view
+    - (done) create a update view
+    - (done) create a delete view
+    - (dropped) database model should return a link to the update view
     - problem: note's can't be null
     - problem: decimal scores are not possible
 

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, DetailView, CreateView, UpdateView
+from django.views.generic import TemplateView, FormView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.edit import ModelFormMixin
 
 from .models import MovieStatus, MovieReview
@@ -78,7 +78,7 @@ class MovieDetailView(DetailView, ModelFormMixin):
             return self.form_invalid(form)
 
 
-class AddReviewView(CreateView):
+class MovieReviewCreateView(CreateView):
     """
     A view to create a review for a movie registered in MovieStatus.
     """
@@ -99,7 +99,7 @@ class AddReviewView(CreateView):
         return super().form_valid(form)
 
 
-class UpdateReviewView(UpdateView):
+class MovieReviewUpdateView(UpdateView):
     model = MovieReview
     form_class = MovieReviewForm
     template_name = "movie_reviews/review_update.html"
@@ -111,4 +111,21 @@ class UpdateReviewView(UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Review changed successfully.")
+        return super().form_valid(form)
+
+
+
+class MovieReviewDeleteView(DeleteView):
+    model = MovieReview
+    template_name = "movie_reviews/review_delete.html"
+    context_object_name = 'movie_review_object'
+
+    def get_success_url(self):
+        # not possible, because it was deleted
+        movie_review = MovieReview.objects.get(pk=self.kwargs['pk'])
+        movie_id = movie_review.tconst.id
+        return reverse('movie_reviews:movie-detail', kwargs={'pk': movie_id})
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Review deleted successfully.")
         return super().form_valid(form)
