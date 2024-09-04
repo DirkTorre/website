@@ -1,7 +1,7 @@
 from django import forms
 import re
 
-from .models import MovieStatus, WatchedDates, CHOICES
+from .models import MovieStatus, MovieReview, CHOICES
 
 class AddMovieForm(forms.Form):
      imdb_id = forms.URLField(label="IMDb URL", required=True)
@@ -37,11 +37,11 @@ class MovieStatusForm(forms.ModelForm):
         exclude = ['tconst']
 
 
-class WatchedDatesForm(forms.ModelForm):
+class MovieReviewForm(forms.ModelForm):
     watch_date = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={"type": "date"}),
     )
     class Meta:
-        model = WatchedDates
+        model = MovieReview
         exclude = ['tconst']

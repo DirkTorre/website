@@ -51,16 +51,13 @@ class MovieStatus(models.Model):
         verbose_name_plural = 'Movie Status'
 
 
-class WatchedDates(models.Model):
-    tconst = models.ForeignKey(to=MovieStatus, null=False, on_delete=models.DO_NOTHING)
+class MovieReview(models.Model):
+    tconst = models.ForeignKey(to=MovieStatus, null=False, on_delete=models.DO_NOTHING) 
     watch_date = models.DateField(null=True)
     enjoyment = models.SmallIntegerField(choices=CHOICES['enjoyment'], null=True)
     quality = models.SmallIntegerField(choices=CHOICES['quality'], null=True)
     notes = models.TextField()
 
     class Meta:
-        verbose_name_plural = 'Watched Dates'
+        verbose_name_plural = 'Movie Reviews'
     
-    def get_url(self):
-        return 'LINK TO UPDATEVIEW'
-        # return reverse('movie_reviews:review-add', kwargs={'pk': self.kwargs['pk']})

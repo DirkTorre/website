@@ -5,6 +5,7 @@
 *.log
 *.pot
 *.pyc
+**.pyc
 __pycache__/
 local_settings.py
 db.sqlite3
@@ -264,3 +265,8 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
+db.sqlite3
+movie_reviews/migrations/__init__.py
+movie_reviews/migrations/0002_moviereview_delete_watcheddates.py
+movie_reviews/migrations/0001_initial.py
+db.sqlite3

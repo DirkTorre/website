@@ -1,11 +1,11 @@
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, DetailView, CreateView
+from django.views.generic import TemplateView, FormView, DetailView, CreateView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 
-from .models import MovieStatus, WatchedDates
-from .forms import AddMovieForm, MovieStatusForm, WatchedDatesForm
+from .models import MovieStatus, MovieReview
+from .forms import AddMovieForm, MovieStatusForm, MovieReviewForm
 
 class HomePageView(TemplateView):
     template_name = 'movie_reviews/index.html'
@@ -64,7 +64,7 @@ class MovieDetailView(DetailView, ModelFormMixin):
 
         # movie_status = MovieStatus.objects.get(id=2)
         
-        watched_dates = WatchedDates.objects.filter(tconst=context['movie_status_object']).order_by('watch_date')
+        watched_dates = MovieReview.objects.filter(tconst=context['movie_status_object']).order_by('watch_date')
         context['movie_reviews'] = watched_dates
         return context
 
@@ -82,8 +82,8 @@ class AddReviewView(CreateView):
     """
     A view to create a review for a movie registered in MovieStatus.
     """
-    model = WatchedDates
-    form_class = WatchedDatesForm
+    model = MovieReview
+    form_class = MovieReviewForm
     # fields = ['watch_date', 'enjoyment', 'quality']
     template_name = "movie_reviews/review_add.html"
     context_object_name = 'review'
@@ -96,4 +96,19 @@ class AddReviewView(CreateView):
         movie_status = MovieStatus.objects.get(pk=self.kwargs['pk'])
         form.instance.tconst = movie_status
         messages.success(self.request, "Review added successfully.")
+        return super().form_valid(form)
+
+
+class UpdateReviewView(UpdateView):
+    model = MovieReview
+    form_class = MovieReviewForm
+    template_name = "movie_reviews/review_update.html"
+    
+    def get_success_url(self):
+        movie_review = MovieReview.objects.get(pk=self.kwargs['pk'])
+        movie_id = movie_review.tconst.id
+        return reverse('movie_reviews:movie-detail', kwargs={'pk': movie_id})
+
+    def form_valid(self, form):
+        messages.success(self.request, "Review changed successfully.")
         return super().form_valid(form)

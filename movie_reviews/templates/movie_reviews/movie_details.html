@@ -43,7 +43,7 @@
             <td>{{ review.watch_date }}</td>
             <td>{{ review.enjoyment }}</td>
             <td>{{ review.quality }}</td>
-            <td>{{ review.get_url }}</td>
+            <td><a href="{% url 'movie_reviews:review-update' pk=review.pk %}">edit</a></td>
         </tr>
         {% endfor %}
     </table>

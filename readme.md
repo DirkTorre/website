@@ -36,6 +36,8 @@ That's fine for development, but bad for deployment.
     - create a update view
     - create a delete view
     - database model should return a link to the update view
+    - problem: note's can't be null
+    - problem: decimal scores are not possible
 
 - movie list:
     - list view with pagination.
