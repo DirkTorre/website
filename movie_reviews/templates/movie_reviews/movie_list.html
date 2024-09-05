@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% comment %} Not sure if this works {% endcomment %}
+{% block title %}{{ block.super }} | Movie List {% endblock title %}
+
+{% block content %}
+<body>
+    <h1>Movie Status List</h1>
+    <table>
+        <tr>
+            <th>tconst</th>
+            <th>priority</th>
+            <th>status</th>
+            <th>netflix</th>
+            <th>prime</th>
+            <th>link</th>
+        </tr>
+        {% for movie in movie_status_list %}
+        <tr>
+            <td>{{ movie.tconst }}</td>
+            <td>{{ movie.priority }}</td>
+            <td>{{ movie.status }}</td>
+            <td>{{ movie.netflix }}</td>
+            <td>{{ movie.prime }}</td>
+            <td><a href="{% url 'movie_reviews:movie-detail' pk=movie.pk %}">details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <br>
+    {% if is_paginated %}
+        {% include 'movie_reviews/pagination_nav.html' %}
+    {% endif %}
+</body>
+
+{% endblock content %}

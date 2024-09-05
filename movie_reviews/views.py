@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, FormView, DetailView, CreateView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import ModelFormMixin
 
 from .models import MovieStatus, MovieReview
@@ -123,3 +123,12 @@ class MovieReviewDeleteView(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "Review deleted successfully.")
         return super().form_valid(form)
+
+
+
+class MovieStatusListView(ListView):
+    template_name = 'movie_reviews/movie_list.html'
+    model = MovieStatus
+    context_object_name = 'movie_status_list'
+    paginate_by = 5
+    paginate_orphans = 1

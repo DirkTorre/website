@@ -4,6 +4,46 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
+      "creation_time": "2024-09-05T20:08:27.320Z",
+      "id": "10",
+      "references": [],
+      "title": "add option to download imdb data, and implement the data"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:04:42.474Z",
+      "id": "8",
+      "references": [],
+      "title": "create a small dashboard"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:01:57.290Z",
+      "description": {
+        "content": "On the page at /movies/list/, create a filter for the movies.\nfilter on every item except link, also include a sort and subsort.",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "references": [],
+      "title": "create filter for the movie list"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:06:03.757Z",
+      "id": "9",
+      "references": [],
+      "title": "get website working on server using github"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
       "creation_time": "2024-08-14T22:54:12.542Z",
       "description": {
         "content": "when errors are gone and website functions well, create tests (use copilot)",
@@ -12,23 +52,18 @@
       "id": "6",
       "references": [],
       "title": "make tests for everything"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-08-11T22:18:27.112Z",
-      "id": "5",
+      "creation_time": "2024-09-05T20:09:31.254Z",
+      "id": "11",
       "references": [],
-      "title": "sucessfull submitting a form must give a fresh form + a success notification",
-      "details": {
-        "content": "messages:\n- sucessfully added\n\t+ unwatched (done)\n    + watched (done)\n- updated\n- wrong url (not imdb and no tt)\n\ncreate a seperate template for the message",
-        "mime": "text/markdown"
-      }
+      "title": "make website pretty"
     }
   ],
+  "in-progress": [],
   "testing": [],
   "done": [
     {
