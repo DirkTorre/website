@@ -42,10 +42,10 @@ CHOICES = {
 
 class MovieStatus(models.Model):
     tconst = models.CharField(max_length=12, unique=True, null=False)
-    status = models.BooleanField(default=False, null=True, choices=CHOICES['status'])
-    priority = models.BooleanField(default=False, null=False, choices=CHOICES['priority'])
-    netflix = models.BooleanField(default=None, null=True, choices=CHOICES['available'])
-    prime = models.BooleanField(default=None, null=True, choices=CHOICES['available'])
+    status = models.BooleanField(default=False, null=True, blank=True, choices=CHOICES['status'])
+    priority = models.BooleanField(default=False, null=False, blank=False, choices=CHOICES['priority'])
+    netflix = models.BooleanField(default=None, null=True, blank=True, choices=CHOICES['available'])
+    prime = models.BooleanField(default=None, null=True, blank=True, choices=CHOICES['available'])
 
     class Meta:
         verbose_name_plural = 'Movie Status'
@@ -53,10 +53,10 @@ class MovieStatus(models.Model):
 
 class MovieReview(models.Model):
     tconst = models.ForeignKey(to=MovieStatus, null=False, on_delete=models.DO_NOTHING) 
-    watch_date = models.DateField(null=True)
-    enjoyment = models.SmallIntegerField(choices=CHOICES['enjoyment'], null=True)
-    quality = models.SmallIntegerField(choices=CHOICES['quality'], null=True)
-    notes = models.TextField()
+    watch_date = models.DateField(null=True, blank=True)
+    enjoyment = models.DecimalField(choices=CHOICES['enjoyment'], blank=True, null=True, max_digits=2, decimal_places=1)
+    quality = models.DecimalField(choices=CHOICES['quality'], blank=True, null=True, max_digits=2, decimal_places=1)
+    notes = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Movie Reviews'

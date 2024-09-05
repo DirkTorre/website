@@ -17,6 +17,9 @@ class HomePageView(TemplateView):
 
 
 class AddMovieView(FormView):
+    """
+    Custom form that takes an imdb url and retrieves the tconst from it.
+    """
     template_name = "movie_reviews/movie_add.html"
     form_class = AddMovieForm
     success_url = "/movies/"
@@ -45,7 +48,7 @@ class MovieDetailView(DetailView, ModelFormMixin):
     Details for a movie, defined by the tables MovieStatus and WatchedDates.
     """
     model = MovieStatus
-    form_class = MovieStatusForm
+    fields = ['status', 'priority', 'netflix', 'prime']
     template_name = "movie_reviews/movie_details.html"
     context_object_name = 'movie_status'
 
@@ -59,11 +62,8 @@ class MovieDetailView(DetailView, ModelFormMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['movie_status_object'] = self.get_object()
         context['movie_status_form'] = self.get_form()
-
-        # movie_status = MovieStatus.objects.get(id=2)
-        
+        context['movie_status_object'] = self.get_object()
         watched_dates = MovieReview.objects.filter(tconst=context['movie_status_object']).order_by('watch_date')
         context['movie_reviews'] = watched_dates
         return context
@@ -79,12 +79,8 @@ class MovieDetailView(DetailView, ModelFormMixin):
 
 
 class MovieReviewCreateView(CreateView):
-    """
-    A view to create a review for a movie registered in MovieStatus.
-    """
     model = MovieReview
     form_class = MovieReviewForm
-    # fields = ['watch_date', 'enjoyment', 'quality']
     template_name = "movie_reviews/review_add.html"
     context_object_name = 'review'
 
@@ -114,14 +110,12 @@ class MovieReviewUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-
 class MovieReviewDeleteView(DeleteView):
     model = MovieReview
     template_name = "movie_reviews/review_delete.html"
     context_object_name = 'movie_review_object'
 
     def get_success_url(self):
-        # not possible, because it was deleted
         movie_review = MovieReview.objects.get(pk=self.kwargs['pk'])
         movie_id = movie_review.tconst.id
         return reverse('movie_reviews:movie-detail', kwargs={'pk': movie_id})

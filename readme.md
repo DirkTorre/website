@@ -36,8 +36,11 @@ That's fine for development, but bad for deployment.
     - (done) create a update view
     - (done) create a delete view
     - (dropped) database model should return a link to the update view
-    - problem: note's can't be null
-    - problem: decimal scores are not possible
+    - (done) problem: note's can't be null
+    - (done) problem: decimal scores are not possible
+
+- movie add form:
+    - must give a warning if link isn't from imdb or ttconst isn't found.
 
 - movie list:
     - list view with pagination.

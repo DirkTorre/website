@@ -1,7 +1,7 @@
 from django import forms
 import re
 
-from .models import MovieStatus, MovieReview, CHOICES
+from .models import MovieStatus, MovieReview
 
 class AddMovieForm(forms.Form):
      imdb_id = forms.URLField(label="IMDb URL", required=True)
@@ -17,21 +17,6 @@ class AddMovieForm(forms.Form):
 
 
 class MovieStatusForm(forms.ModelForm):
-    status = forms.TypedChoiceField(
-            choices=CHOICES['status'],
-            required=False,
-            empty_value=None
-        )
-    prime = forms.TypedChoiceField(
-            choices=CHOICES['available'],
-            required=False,
-            empty_value=None
-        )
-    netflix = forms.TypedChoiceField(
-            choices=CHOICES['available'],
-            required=False,
-            empty_value=None
-        )
     class Meta:
         model = MovieStatus
         exclude = ['tconst']
@@ -40,7 +25,11 @@ class MovieStatusForm(forms.ModelForm):
 class MovieReviewForm(forms.ModelForm):
     watch_date = forms.DateField(
         required=False,
-        widget=forms.DateInput(attrs={"type": "date"}),
+        widget=forms.DateInput(attrs={"type": "date"})
+    )
+    notes = forms.DateField(
+        required=False,
+        widget=forms.Textarea()
     )
     class Meta:
         model = MovieReview
