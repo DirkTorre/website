@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 import re
 
 from .models import MovieStatus, MovieReview
@@ -11,15 +12,13 @@ class AddMovieForm(forms.Form):
         Get the id from the url.
         """
         url = self.cleaned_data["imdb_id"]
+        if 'www.imdb.com/' not in url:
+            raise ValidationError("URL does not originate from IMDb.com")
+        if not re.compile('/tt[0-9]+').search(url):
+            raise ValidationError("tconst not found")
         regex = re.compile('^tt[0-9]+')
-        url = list(filter(lambda id: regex.match(id), url.split('/')))[0]
-        return url
-
-
-class MovieStatusForm(forms.ModelForm):
-    class Meta:
-        model = MovieStatus
-        exclude = ['tconst']
+        tconst = list(filter(lambda id: regex.match(id), url.split('/')))[0]
+        return tconst
 
 
 class MovieReviewForm(forms.ModelForm):

@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, FormView, DetailView, CreateView,
 from django.views.generic.edit import ModelFormMixin
 
 from .models import MovieStatus, MovieReview
-from .forms import AddMovieForm, MovieStatusForm, MovieReviewForm
+from .forms import AddMovieForm, MovieReviewForm
 
 class HomePageView(TemplateView):
     template_name = 'movie_reviews/index.html'

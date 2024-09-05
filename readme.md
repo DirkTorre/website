@@ -40,12 +40,12 @@ That's fine for development, but bad for deployment.
     - (done) problem: decimal scores are not possible
 
 - movie add form:
-    - must give a warning if link isn't from imdb or ttconst isn't found.
+    - (done) must give a warning if link isn't from imdb or ttconst isn't found.
 
 - movie list:
     - list view with pagination.
     - links to detail views.
-    - filtering
+    - filtering (django-filter)
 
 
 
