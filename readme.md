@@ -19,12 +19,21 @@ The main project for now is creating an personal version of the IMDb movie datab
 
 - [Create View](https://www.pythontutorial.net/django-tutorial/django-createview/)
 
+### forms
+
+- [Form choices](https://www.b-list.org/weblog/2007/nov/02/handle-choices-right-way/)
+
 ## Notes
 
 Pushed sqlite database django superuser to github.
 That's fine for development, but bad for deployment.
 
 ## TODO's
+
+- bugs:
+    - it's not possible to change status of netflix and prime in the django admin.
+
+- create a setup for a database with with every posssible combination.
 
 - details:
     - delete database from main branch and replace with dummie database, provide instructions on how to setup

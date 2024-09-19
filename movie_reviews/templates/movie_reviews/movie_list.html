@@ -1,12 +1,26 @@
-
 {% extends 'base.html' %}
-
 {% comment %} Not sure if this works {% endcomment %}
 {% block title %}{{ block.super }} | Movie List {% endblock title %}
 
 {% block content %}
 <body>
     <h1>Movie Status List</h1>
+    
+    <form method='GET' url="{% url 'movie_reviews:movie-list' %}">
+        <table>
+        {% for field in form %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                {% for f in field %}
+                    <td>{{ f }}</td>
+                {% endfor %} 
+                <td>{{ field.errors }}</td> 
+            </tr>
+        {% endfor %}
+        </table>
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </form>
+
     <table>
         <tr>
             <th>tconst</th>
