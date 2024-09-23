@@ -1,8 +1,19 @@
-# Intro
+# Django website project
+
+## Intro
 
 This is a personal project of mine to enhance my django Software Engineering skills.
 The goal is to make a website with all kind of projects on it.
-The main project for now is creating an personal version of the IMDb movie database website. Here I store information about movies I want to watch and have watched. I'm using Django class based views for this, which I'm new to, so there is a lot to learn. 
+The main project for now is creating an personal version of the IMDb movie database website. Here I store information about movies I want to watch and have watched. I'm using Django class based views for this, which I'm new to, so there is a lot to learn.
+
+## Setup
+
+Create a venv from the pip requirements in `requirements.txt`.
+Or create a conda environment from `spec-file.txt`.
+In a later version I will transfer the whole project to a venv instead of a conda environment.
+When that happens I will include instructions on how to install the venv.
+
+Populating the database can be done with `python manage.py create_reviews`.
 
 ## sources
 
@@ -29,12 +40,3 @@ Pushed sqlite database django superuser to github.
 That's fine for development, but bad for deployment.
 
 ## TODO's
-
-- bugs:
-    - it's not possible to change status of netflix and prime in the django admin.
-
-- create a setup for a database with with every posssible combination.
-
-- details:
-    - delete database from main branch and replace with dummie database, provide instructions on how to setup
-    - include environment file in commit

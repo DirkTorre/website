@@ -3,26 +3,26 @@ from django.urls import reverse
 
 CHOICES = {
     "enjoyment": (
-        (0, "0: dislike"),
+        (0.0, "0: dislike"),
         (0.5, "0.5"),
-        (1, "1: mweh"),
+        (1.0, "1: mweh"),
         (1.5, "1.5"),
-        (2, "2: fun"),
+        (2.0, "2: fun"),
         (2.5, "2.5"),
-        (3, "3: good / cool"),
+        (3.0, "3: good / cool"),
         (3.5, "3.5"),
-        (4, "4: great"),
+        (4.0, "4: great"),
     ),
     "quality": (
-        (0, "0: bad, not worth watching"),
+        (0.0, "0: bad, not worth watching"),
         (0.5, "0.5"),
-        (1, "1: bad, but interesting"),
+        (1.0, "1: bad, but interesting"),
         (1.5, "1.5"),
-        (2, "2: good enough"),
+        (2.0, "2: good enough"),
         (2.5, "2.5"),
-        (3, "3: good"),
+        (3.0, "3: good"),
         (3.5, "3.5"),
-        (4, "4: great"),
+        (4.0, "4: great"),
     ),
 }
 
@@ -43,8 +43,8 @@ class MovieStatus(models.Model):
         (PRIORITY_NO, "no"),
     )
     AVAILABILITY_UNKNOWN = None
-    AVAILABILITY_AVAILABLE = None
-    AVAILABILITY_NOT_AVAILABLE = None
+    AVAILABILITY_AVAILABLE = True
+    AVAILABILITY_NOT_AVAILABLE = False
     AVAILABILITY_CHOICES = (
         (AVAILABILITY_UNKNOWN, "unknown"),
         (AVAILABILITY_AVAILABLE, "available"),
@@ -63,6 +63,9 @@ class MovieStatus(models.Model):
     prime = models.BooleanField(
         default=None, null=True, blank=True, choices=AVAILABILITY_CHOICES
     )
+
+    def __str__(self):
+        return self.tconst
 
     class Meta:
         verbose_name_plural = "Movie Status"
