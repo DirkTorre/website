@@ -4,10 +4,11 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-09-05T20:08:27.320Z",
-      "id": "10",
+      "creation_time": "2024-09-23T21:56:26.224Z",
+      "id": "14",
       "references": [],
-      "title": "add option to download imdb data, and implement the data"
+      "title": "movie review can't be altered",
+      "type": "bug"
     },
     {
       "assignedTo": {
@@ -16,7 +17,55 @@
       "creation_time": "2024-09-05T20:19:22.348Z",
       "id": "12",
       "references": [],
-      "title": "clean git list"
+      "title": "1 clean git list"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-23T21:47:21.272Z",
+      "description": {
+        "content": "priority, status, netflix and prime now give raw values in the movie status list.\nThis must be fixed to give the readable values.",
+        "mime": "text/markdown"
+      },
+      "id": "13",
+      "references": [],
+      "title": "2 improve the movie list"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-14T22:54:12.542Z",
+      "description": {
+        "content": "when errors are gone and website functions well, create tests (use copilot)",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "references": [],
+      "title": "3 make tests for everything"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:08:27.320Z",
+      "id": "10",
+      "references": [],
+      "title": "4 add option to download imdb data, and implement the data",
+      "details": {
+        "content": "use celery",
+        "mime": "text/markdown"
+      }
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:06:03.757Z",
+      "id": "9",
+      "references": [],
+      "title": "5 get website working on server using github"
     },
     {
       "assignedTo": {
@@ -31,41 +80,6 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-09-05T20:01:57.290Z",
-      "description": {
-        "content": "On the page at /movies/list/, create a filter for the movies.\nfilter on every item except link, also include a sort and subsort.",
-        "mime": "text/markdown"
-      },
-      "id": "7",
-      "references": [],
-      "title": "create filter for the movie list"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
-      "creation_time": "2024-09-05T20:06:03.757Z",
-      "id": "9",
-      "references": [],
-      "title": "get website working on server using github"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
-      "creation_time": "2024-08-14T22:54:12.542Z",
-      "description": {
-        "content": "when errors are gone and website functions well, create tests (use copilot)",
-        "mime": "text/markdown"
-      },
-      "id": "6",
-      "references": [],
-      "title": "make tests for everything"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
       "creation_time": "2024-09-05T20:09:31.254Z",
       "id": "11",
       "references": [],
@@ -75,6 +89,19 @@
   "in-progress": [],
   "testing": [],
   "done": [
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:01:57.290Z",
+      "description": {
+        "content": "On the page at /movies/list/, create a filter for the movies.\nfilter on every item except link, also include a sort and subsort.",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "references": [],
+      "title": "create filter for the movie list"
+    },
     {
       "assignedTo": {
         "name": "DirkTorre"

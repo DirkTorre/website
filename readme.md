@@ -15,6 +15,11 @@ When that happens I will include instructions on how to install the venv.
 
 Populating the database can be done with `python manage.py create_reviews`.
 
+## kanban board
+
+The project has a kanban board in the `.vscode/` folder.
+It uses the [vscode-kanban extention](https://github.com/mkloubert/vscode-kanban)
+
 ## sources
 
 ### templates
@@ -40,3 +45,5 @@ Pushed sqlite database django superuser to github.
 That's fine for development, but bad for deployment.
 
 ## TODO's
+
+- fix the rendering of the movie list.
