@@ -266,9 +266,4 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
 db.sqlite3
-movie_reviews/migrations/__init__.py
-movie_reviews/migrations/0002_moviereview_delete_watcheddates.py
-movie_reviews/migrations/0001_initial.py
-db.sqlite3
-movie_reviews/migrations/0006_alter_moviestatus_netflix_alter_moviestatus_prime.py
-movie_reviews/migrations/0007_alter_moviestatus_netflix_alter_moviestatus_prime.py
+movie_reviews/migrations/*

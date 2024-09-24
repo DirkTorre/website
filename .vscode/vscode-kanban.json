@@ -4,15 +4,6 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-09-05T20:19:22.348Z",
-      "id": "12",
-      "references": [],
-      "title": "1 clean git list"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
       "creation_time": "2024-08-14T22:54:12.542Z",
       "description": {
         "content": "when errors are gone and website functions well, create tests (use copilot)",
@@ -75,6 +66,15 @@
       "references": [],
       "title": "movie review can't be altered",
       "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:19:22.348Z",
+      "id": "12",
+      "references": [],
+      "title": "1 clean git list"
     },
     {
       "assignedTo": {
