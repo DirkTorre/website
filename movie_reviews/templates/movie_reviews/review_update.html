@@ -2,16 +2,13 @@
 
 {% block content %}
   <h1>Update review</h1>
-  <form method="post">
+  <form action='' method="post">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-    <button type="submit">Save changes</button>
+    <button type="submit" value="Update">Save changes</button>
   </form>
-  <br>
-  <br>
-  <br>
   <br>
   <br>
   <a href="{% url 'movie_reviews:review-delete' pk=object.pk %}">Delete Review</a>

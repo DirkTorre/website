@@ -2,7 +2,7 @@
     <ul> 
         <li><a href="{% url 'homepage:home' %}">Home</a></li>
         <li class="dropdown">
-            <a href="{% url 'movie_reviews:home' %}">Movies</a>
+            <a href="{% url 'movie_reviews:home' %}" class="dropbtn">Movies</a>
             <ul class="dropdown-content">
                 <li><a href="{% url 'movie_reviews:movie-add' %}">Add Movie</a></li>
                 <li><a href="{% url 'movie_reviews:movie-list' %}">Movie List</a></li>

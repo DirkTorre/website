@@ -4,33 +4,10 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-09-23T21:56:26.224Z",
-      "id": "14",
-      "references": [],
-      "title": "movie review can't be altered",
-      "type": "bug"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
       "creation_time": "2024-09-05T20:19:22.348Z",
       "id": "12",
       "references": [],
       "title": "1 clean git list"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
-      "creation_time": "2024-09-23T21:47:21.272Z",
-      "description": {
-        "content": "priority, status, netflix and prime now give raw values in the movie status list.\nThis must be fixed to give the readable values.",
-        "mime": "text/markdown"
-      },
-      "id": "13",
-      "references": [],
-      "title": "2 improve the movie list"
     },
     {
       "assignedTo": {
@@ -89,6 +66,29 @@
   "in-progress": [],
   "testing": [],
   "done": [
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-23T21:56:26.224Z",
+      "id": "14",
+      "references": [],
+      "title": "movie review can't be altered",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-23T21:47:21.272Z",
+      "description": {
+        "content": "priority, status, netflix and prime now give raw values in the movie status list.\nThis must be fixed to give the readable values.",
+        "mime": "text/markdown"
+      },
+      "id": "13",
+      "references": [],
+      "title": "2 improve the movie list"
+    },
     {
       "assignedTo": {
         "name": "DirkTorre"

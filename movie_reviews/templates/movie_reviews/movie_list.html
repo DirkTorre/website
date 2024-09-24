@@ -3,6 +3,52 @@
 {% block title %}{{ block.super }} | Movie List {% endblock title %}
 
 {% block content %}
+<style>
+    /* Style the table */
+    table {
+        {% comment %} width: 100%; {% endcomment %}
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1em;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Style the table header */
+    table th {
+        background-color: rgb(255, 164, 0);
+        color: #ffffff;
+        text-align: center;
+        padding: 12px 15px;
+    }
+
+    /* Style the table rows */
+    table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #dddddd;
+        text-align: center;
+    }
+
+    /* Add alternating row colors */
+    table tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    /* Highlight the last row */
+    table tr:last-of-type {
+        border-bottom: 2px solid rgb(255, 164, 0);
+    }
+
+    /* Style the links */
+    table a {
+        color: rgb(255, 164, 0);
+        text-decoration: none;
+    }
+
+    table a:hover {
+        text-decoration: underline;
+    }
+</style>
 <body>
     <h1>Movie Status List</h1>
     
@@ -33,10 +79,10 @@
         {% for movie in movie_status_list %}
         <tr>
             <td>{{ movie.tconst }}</td>
-            <td>{{ movie.priority }}</td>
-            <td>{{ movie.status }}</td>
-            <td>{{ movie.netflix }}</td>
-            <td>{{ movie.prime }}</td>
+            <td>{{ movie.get_priority_display }}</td>
+            <td>{{ movie.get_status_display }}</td>
+            <td>{{ movie.get_netflix_display }}</td>
+            <td>{{ movie.get_prime_display }}</td>
             <td><a href="{% url 'movie_reviews:movie-detail' pk=movie.pk %}">details</a></td>
         </tr>
         {% endfor %}
