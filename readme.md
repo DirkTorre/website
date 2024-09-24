@@ -38,12 +38,3 @@ It uses the [vscode-kanban extention](https://github.com/mkloubert/vscode-kanban
 ### forms
 
 - [Form choices](https://www.b-list.org/weblog/2007/nov/02/handle-choices-right-way/)
-
-## Notes
-
-Pushed sqlite database django superuser to github.
-That's fine for development, but bad for deployment.
-
-## TODO's
-
-- fix the rendering of the movie list.
