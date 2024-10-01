@@ -4,19 +4,6 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-08-14T22:54:12.542Z",
-      "description": {
-        "content": "when errors are gone and website functions well, create tests (use copilot)",
-        "mime": "text/markdown"
-      },
-      "id": "6",
-      "references": [],
-      "title": "3 make tests for everything"
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
       "creation_time": "2024-09-05T20:08:27.320Z",
       "id": "10",
       "references": [],
@@ -54,7 +41,25 @@
       "title": "make website pretty"
     }
   ],
-  "in-progress": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-08-14T22:54:12.542Z",
+      "description": {
+        "content": "read the docs, create unit tests and the other types of tests.",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "references": [],
+      "title": "3 make tests for everything",
+      "details": {
+        "content": "- read this: https://docs.djangoproject.com/en/4.1/topics/testing/\n- continue on this: https://docs.djangoproject.com/en/4.1/topics/testing/tools/\n\ncreate testing database",
+        "mime": "text/markdown"
+      }
+    }
+  ],
   "testing": [],
   "done": [
     {
@@ -64,8 +69,12 @@
       "creation_time": "2024-09-23T21:56:26.224Z",
       "id": "14",
       "references": [],
-      "title": "movie review can't be altered",
-      "type": "bug"
+      "title": "creating a review with a date does not work",
+      "type": "bug",
+      "description": {
+        "content": "it gives an error",
+        "mime": "text/markdown"
+      }
     },
     {
       "assignedTo": {

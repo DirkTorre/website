@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 import re
 
-from .models import MovieStatus, MovieReview
+from .models import MovieReview
 
 
 class AddMovieForm(forms.Form):
@@ -24,11 +24,9 @@ class AddMovieForm(forms.Form):
 
 class MovieReviewForm(forms.ModelForm):
     watch_date = forms.DateField(
-        required=False,
-        widget=forms.DateInput(format="%d/%m/%Y", attrs={"type": "date"}),
-        input_formats=["%d/%m/%Y"],
+        required=False, widget=forms.DateInput(attrs={"type": "date"})
     )
-    notes = forms.CharField(required=False, widget=forms.Textarea())
+    notes = forms.CharField(required=False, widget=forms.Textarea(), empty_value=None)
 
     class Meta:
         model = MovieReview
