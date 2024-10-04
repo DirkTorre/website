@@ -156,14 +156,3 @@ class MovieStatusListView(ListView):
         context = super().get_context_data(**kwargs)
         context["form"] = self.filterset.form
         return context
-
-
-# # for testing
-# from django_filters.views import FilterView
-# from .models import MovieStatus
-# from .filters import MovieStatusFilter
-
-# class MovieStatusListView(FilterView):
-#     model = MovieStatus
-#     filterset_class = MovieStatusFilter
-#     template_name = 'moviestatus_list.html'

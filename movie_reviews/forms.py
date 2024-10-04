@@ -14,9 +14,9 @@ class AddMovieForm(forms.Form):
         """
         url = self.cleaned_data["imdb_id"]
         if "www.imdb.com/" not in url:
-            raise ValidationError("URL does not originate from IMDb.com")
+            raise ValidationError("URL does not originate from IMDb.com.")
         if not re.compile("/tt[0-9]+").search(url):
-            raise ValidationError("tconst not found")
+            raise ValidationError("URL does not contain the tconst movie id.")
         regex = re.compile("^tt[0-9]+")
         tconst = list(filter(lambda id: regex.match(id), url.split("/")))[0]
         return tconst
