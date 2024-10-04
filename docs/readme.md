@@ -38,3 +38,9 @@ It uses the [vscode-kanban extention](https://github.com/mkloubert/vscode-kanban
 ### forms
 
 - [Form choices](https://www.b-list.org/weblog/2007/nov/02/handle-choices-right-way/)
+
+### tests
+
+- `https://realpython.com/testing-in-django-part-1-best-practices-and-examples/`
+- `https://djangostars.com/blog/django-pytest-testing/`
+

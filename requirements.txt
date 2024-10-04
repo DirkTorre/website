@@ -2,12 +2,13 @@ asgiref==3.8.1
 Django==5.1.1
 django-filter==24.3
 djangorestframework==3.15.2
-iniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work
-packaging @ file:///croot/packaging_1710807400464/work
+iniconfig==1.1.1
+packaging==23.2
 pillow==10.2.0
-pluggy @ file:///work/perseverance-python-buildout/croot/pluggy_1698805497733/work
-pytest @ file:///work/perseverance-python-buildout/croot/pytest_1698845497894/work
+pip==23.3.1
+pluggy==1.0.0
+pytest==7.4.0
 pytest-django==4.8.0
 setuptools==68.2.2
-sqlparse @ file:///work/perseverance-python-buildout/croot/sqlparse_1698874574933/work
+sqlparse==0.4.4
 wheel==0.41.2

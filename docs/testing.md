@@ -1,4 +1,4 @@
-you can set up test data using the class method [SetUpTEstData()](https://docs.djangoproject.com/en/5.1/topics/testing/tools/#django.test.TestCase.setUpTestData)
+you can set up test data using the class method [SetUpTestData()](https://docs.djangoproject.com/en/5.1/topics/testing/tools/#django.test.TestCase.setUpTestData)
 
 but you can also use [fixtures](https://docs.djangoproject.com/en/5.1/topics/db/fixtures/#fixtures-explanation)
 

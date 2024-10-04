@@ -1,29 +1,9 @@
-"""
-https://realpython.com/testing-in-django-part-1-best-practices-and-examples/
-https://djangostars.com/blog/django-pytest-testing/
-
-A.I. generated code.
-Setup: The setUp method initializes the RequestFactory and sets up the URL and test data.
-Valid Form Test:
-    Creates a POST request with valid data.
-    Checks if the response status code is 302 (redirect).
-    Verifies that a MovieStatus object with the given tconst exists.
-    Confirms the redirect URL is correct.
-Invalid Form Test:
-    Creates a POST request with invalid data.
-    Checks if the response status code is 200 (form re-rendered).
-    Verifies that the response contains the error message for the required field.
-"""
-
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
-from django import forms
 import re
 
 
 from movie_reviews.models import MovieStatus
-from movie_reviews.forms import AddMovieForm
-from movie_reviews.views import AddMovieView
 
 
 class TestAddMovieView(TestCase):
@@ -79,7 +59,7 @@ class TestMovieDetailView(TestCase):
     - connection:
         + to this view
         + from this view to review add/update/delete
-
+    - more stuff
     """
 
     @classmethod

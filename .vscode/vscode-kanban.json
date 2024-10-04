@@ -17,10 +17,23 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
+      "creation_time": "2024-10-04T20:10:57.598Z",
+      "description": {
+        "content": "replace conda with venv.\nis pyenv needed? or can the python verion be defined in the pipfile",
+        "mime": "text/markdown"
+      },
+      "id": "15",
+      "references": [],
+      "title": "5 switch to venv"
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
       "creation_time": "2024-09-05T20:06:03.757Z",
       "id": "9",
       "references": [],
-      "title": "5 get website working on server using github"
+      "title": "6 get website working on server using github"
     },
     {
       "assignedTo": {
@@ -55,7 +68,7 @@
       "references": [],
       "title": "3 make tests for everything",
       "details": {
-        "content": "- read this: https://docs.djangoproject.com/en/4.1/topics/testing/\n- continue on this: https://docs.djangoproject.com/en/4.1/topics/testing/tools/\n\ncreate testing database",
+        "content": "- continue making view tests\n- make form tests\n- read this: https://docs.djangoproject.com/en/4.1/topics/testing/\n- continue on this: https://docs.djangoproject.com/en/4.1/topics/testing/tools/\n\ncreate testing database",
         "mime": "text/markdown"
       }
     }
