@@ -28,6 +28,8 @@ CHOICES = {
 
 
 class MovieStatus(models.Model):
+    # TODO: figure out if th options can be turned into a class,
+    # so they are encapsulated for every field.
     STATUS_UNKNOWN = None
     STATUS_WATCHED = True
     STATUS_NOT_WATCHED = False

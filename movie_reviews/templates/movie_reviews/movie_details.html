@@ -25,12 +25,12 @@
 
 <div>
     <h2>Info</h2>
-    <a href="https://www.imdb.com/title/{{ movie_status_object.tconst }}/">link to the IMDb movie page</a>
+    <a id="imdb_web_link" href="https://www.imdb.com/title/{{ movie_status_object.tconst }}/">link to the IMDb movie page</a>
 </div>
 
 <div>
     <h2>Reviews</h2>
-    <a href="{% url 'movie_reviews:review-add' pk=movie_status_object.pk %}" class="btn btn-primary">Add Review</a>
+    <a id=add-review href="{% url 'movie_reviews:review-add' pk=movie_status_object.pk %}" class="btn btn-primary">Add Review</a>
     <table>
         <tr>
             <th>watch date</th>
@@ -43,7 +43,7 @@
             <td>{{ review.watch_date }}</td>
             <td>{{ review.enjoyment }}</td>
             <td>{{ review.quality }}</td>
-            <td><a href="{% url 'movie_reviews:review-update' pk=review.pk %}">edit</a></td>
+            <td><a id="review_link" href="{% url 'movie_reviews:review-update' pk=review.pk %}">edit</a></td>
         </tr>
         {% endfor %}
     </table>

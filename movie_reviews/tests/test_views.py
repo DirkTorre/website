@@ -1,9 +1,11 @@
-from django.test import TestCase
-from django.urls import reverse
+from django.test import TestCase, RequestFactory
+from django.urls import reverse, NoReverseMatch
 import re
+from datetime import date
 
 
-from movie_reviews.models import MovieStatus
+from movie_reviews.models import MovieStatus, MovieReview
+from movie_reviews.views import MovieDetailView
 
 
 class TestAddMovieView(TestCase):
@@ -56,15 +58,98 @@ class TestAddMovieView(TestCase):
 class TestMovieDetailView(TestCase):
     """
     What to test:
-    - connection:
-        + to this view
-        + from this view to review add/update/delete
-    - more stuff
+    - (done) connection to this view
+    - connection to add view
+    - connection to update view
+    - if the info url is correct
+    - if the status form is rendered correctly (form test)
+    - if the reviews are redered correctly
     """
 
     @classmethod
     def setUpTestData(cls):
-        NotImplemented
+        # create movie
+        cls.movie_strangelove = MovieStatus.objects.create(
+            tconst="tt0057012",  # Dr. Strangelove
+            status=MovieStatus.STATUS_NOT_WATCHED,
+            priority=MovieStatus.PRIORITY_YES,
+            netflix=MovieStatus.AVAILABILITY_UNKNOWN,
+            prime=MovieStatus.AVAILABILITY_UNKNOWN,
+        )
+
+        # create movie with reviews
+        cls.movie_brother = MovieStatus.objects.create(
+            tconst="tt0190590",  # O Brother, Where Art Thou?
+            status=MovieStatus.STATUS_WATCHED,
+            priority=MovieStatus.PRIORITY_NO,
+            netflix=MovieStatus.AVAILABILITY_UNKNOWN,
+            prime=MovieStatus.AVAILABILITY_UNKNOWN,
+        )
+
+        # create reviews for the movie
+        cls.review1 = MovieReview.objects.create(
+            tconst=cls.movie_brother,
+            watch_date=date(2002, 12, 31),
+            enjoyment=4,
+            quality=2,
+            notes="Fun fun",
+        )
+
+        cls.review2 = MovieReview.objects.create(
+            tconst=cls.movie_brother,
+            watch_date=date(2010, 8, 20),
+            enjoyment=4,
+            quality=2,
+            notes="Still fun",
+        )
 
     def setUp(self):
-        NotImplemented
+        self.movie_detail = "movie_reviews:movie-detail"
+        self.movie_review = "movie_reviews:review-add"
+        self.movie_review_update = "movie_reviews:review-update"
+
+    def test_post_valid_data(self):
+        """Test if an exciting detail view get's loaded correctly."""
+        strangelove = {"pk": self.movie_strangelove.id}
+        detail_link = reverse(self.movie_detail, kwargs=strangelove)
+        response = self.client.post(detail_link)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "movie_reviews/movie_details.html")
+
+    def test_post_invalid_data(self):
+        """Test if an nonexisting detail view get's loaded correctly."""
+        wrong_id = {"pk": -1}
+        with self.assertRaises(NoReverseMatch):
+            reverse(self.movie_detail, kwargs=wrong_id)
+
+        with self.assertRaises(NoReverseMatch):
+            reverse(self.movie_detail)
+
+    # def test_links(self):
+    #     """Test if the outgoing links behave like expected."""
+    #     strangelove = {"pk": self.movie_strangelove.id}
+    #     detail_link = reverse(self.movie_detail, kwargs=strangelove)
+    #     response = self.client.post(detail_link)
+    #     html_text = response.content.decode("utf-8")
+
+    #     link = f"https://www.imdb.com/title/{self.movie_strangelove.tconst}/"
+    #     strangelove_imdb_link = (
+    #         f'<a id="imdb_web_link" href="{link}">link to the IMDb movie page</a>'
+    #     )
+    #     self.assertInHTML(strangelove_imdb_link, html_text)
+    #     response = self.client.post(link)
+    #     self.assertEqual(response.status_code, 200)
+
+    #     strangelove_add_review_url = reverse(self.movie_review, kwargs=strangelove)
+    #     strangelove_add_review_link = f'<a id=add-review href="{strangelove_add_review_url}" class="btn btn-primary">Add Review</a>'
+    #     self.assertInHTML(strangelove_add_review_link, html_text)
+    #     # TODO: test if link works
+
+    #     # TODO: doe not work, fix this.
+    #     strangelove_update_review_url = reverse(
+    #         self.movie_review_update, kwargs={"pk": self.review1.id}
+    #     )
+    #     strangelove_update_review_link = (
+    #         f'<a id="review_link" href="{strangelove_update_review_link}">'
+    #     )
+    #     self.assertInHTML(strangelove_update_review_link, html_text)
