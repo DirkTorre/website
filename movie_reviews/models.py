@@ -94,3 +94,14 @@ class MovieReview(models.Model):
 
     class Meta:
         verbose_name_plural = "Movie Reviews"
+
+
+class MovieDataFiles(models.Model):
+    file_name = models.CharField(unique=True, max_length=50, null=False)
+    imdb_path = models.URLField(unique=True, null=False)
+    output_path = models.URLField(null=False, blank=True)
+    last_successful_download = models.DateTimeField(null=True, blank=True)
+    progress = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Movie Data Files"

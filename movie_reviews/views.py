@@ -15,8 +15,8 @@ from django.views.generic.edit import ModelFormMixin
 
 from movie_reviews.filters import MovieStatusFilter
 
-from .models import MovieStatus, MovieReview
-from .forms import AddMovieForm, MovieReviewForm
+from .models import MovieStatus, MovieReview, MovieDataFiles
+from .forms import AddMovieForm, MovieReviewForm, DownloadIMDbForm
 
 
 class HomePageView(TemplateView):
@@ -156,3 +156,43 @@ class MovieStatusListView(ListView):
         context = super().get_context_data(**kwargs)
         context["form"] = self.filterset.form
         return context
+
+
+class DownloadIMDbDataView(FormView):
+    """
+    Shows buttons to download imdb files on command.
+    Maybe better to use a async view.
+    """
+
+    template_name = "movie_reviews/download_files.html"
+    form_class = DownloadIMDbForm
+    success_url = "/download/progress/"
+
+    def get_success_url(self):
+        return reverse("movie_reviews:imdb-convert")
+
+    def form_valid(self, form):
+        movie_info = form.cleaned_data["movie_info"]
+        movie_ratings = form.cleaned_data["movie_ratings"]
+
+        print("movie_info: ", movie_info)
+
+        # TODO: download the files simultaniously, like in the pandas project
+        # TODO: when a file is downloaded, start converting with pandas and save in database
+        # look at tasks.py
+        # https://www.youtube.com/playlist?list=PLOLrQ9Pn6cayGytG1fgUPEsUp3Onol8V7
+        if movie_ratings:
+            movie_ratings_data = MovieDataFiles.objects.get(file_name="imdb_ratings")
+            print(movie_ratings_data.imdb_path)
+
+        if movie_info:
+            movie_info_data = MovieDataFiles.objects.get(file_name="basic_movie_info")
+            print(movie_info_data.imdb_path)
+
+        return super().form_valid(form)
+
+
+class DownloadProgressView(TemplateView):
+    # TODO: make a progress bar, that includes name of stage
+    # TODO: create Asynchronous class-based views: https://docs.djangoproject.com/en/5.1/topics/class-based-views/
+    template_name = "movie_reviews/download_progress.html"

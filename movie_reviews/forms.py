@@ -31,3 +31,10 @@ class MovieReviewForm(forms.ModelForm):
     class Meta:
         model = MovieReview
         exclude = ["tconst"]
+
+
+class DownloadIMDbForm(forms.Form):
+    # title.basics.tsv.gz
+    # title.ratings.tsv.gz
+    movie_info = forms.BooleanField(label="Basic movie info: ", required=False)
+    movie_ratings = forms.BooleanField(label="Movie ratings: ", required=False)

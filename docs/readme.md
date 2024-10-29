@@ -44,3 +44,6 @@ It uses the [vscode-kanban extention](https://github.com/mkloubert/vscode-kanban
 - `https://realpython.com/testing-in-django-part-1-best-practices-and-examples/`
 - `https://djangostars.com/blog/django-pytest-testing/`
 
+### celery
+
+- `https://www.youtube.com/playlist?list=PLOLrQ9Pn6cayGytG1fgUPEsUp3Onol8V7`

@@ -4,6 +4,36 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
+      "creation_time": "2024-08-14T22:54:12.542Z",
+      "description": {
+        "content": "read the docs, create unit tests and the other types of tests.",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "references": [],
+      "title": "3 make tests for everything",
+      "details": {
+        "content": "- continue making view tests\n- make form tests\n- read this: https://docs.djangoproject.com/en/4.1/topics/testing/\n- continue on this: https://docs.djangoproject.com/en/4.1/topics/testing/tools/\n\ncreate testing database",
+        "mime": "text/markdown"
+      }
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
+      "creation_time": "2024-09-05T20:08:27.320Z",
+      "id": "10",
+      "references": [],
+      "title": "4 add option to download imdb data, and implement the data",
+      "details": {
+        "content": "- just make a modelformview\n- followed a celery tutorial\n- progressbar: https://www.freecodecamp.org/news/how-to-build-a-progress-bar-for-the-web-with-django-and-celery-12a405637440/",
+        "mime": "text/markdown"
+      }
+    },
+    {
+      "assignedTo": {
+        "name": "DirkTorre"
+      },
       "creation_time": "2024-10-04T20:10:57.598Z",
       "description": {
         "content": "replace conda with venv.\nis pyenv needed? or can the python verion be defined in the pipfile",
@@ -46,31 +76,14 @@
       "assignedTo": {
         "name": "DirkTorre"
       },
-      "creation_time": "2024-08-14T22:54:12.542Z",
+      "creation_time": "2024-10-29T18:04:50.710Z",
       "description": {
-        "content": "read the docs, create unit tests and the other types of tests.",
+        "content": "aps in apps",
         "mime": "text/markdown"
       },
-      "id": "6",
+      "id": "16",
       "references": [],
-      "title": "3 make tests for everything",
-      "details": {
-        "content": "- continue making view tests\n- make form tests\n- read this: https://docs.djangoproject.com/en/4.1/topics/testing/\n- continue on this: https://docs.djangoproject.com/en/4.1/topics/testing/tools/\n\ncreate testing database",
-        "mime": "text/markdown"
-      }
-    },
-    {
-      "assignedTo": {
-        "name": "DirkTorre"
-      },
-      "creation_time": "2024-09-05T20:08:27.320Z",
-      "id": "10",
-      "references": [],
-      "title": "4 add option to download imdb data, and implement the data",
-      "details": {
-        "content": "use celery",
-        "mime": "text/markdown"
-      }
+      "title": "restructure to subapps"
     }
   ],
   "testing": [],
